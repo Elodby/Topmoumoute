@@ -1,9 +1,12 @@
+<?php 
+var_dump($this->data['top']);
+?>
+
 <div class="media">
   <div class="media-body">
-    <?php var_dump($this->data['top']);
-			
-			echo "<h2>". $this->data['top'][0]['to_title'] ."</h2>"; ?>
-    <div>
+
+  	<h2> <?php echo $this->data['top'][0]['to_title']; ?> </h2>
+  	<div>
     	<!--<a href="<?php //"../users/".$user['id']?>">-->
 
 		<a href="<?php echo $app->urlFor('user') ?>">
@@ -16,7 +19,6 @@
 				} ?>
 			</ul>
     </div>
-  </div>
-</div>
 
-<!--<a href="<?php //echo $app->urlFor('root')  ?>">< Back</a>-->
+  </div>
+</div>	

@@ -1,8 +1,5 @@
-<div class="media">
-  <div class="media-body">
-    
-    <form method="post" action="<?php echo $app->urlFor('creation_elements')?>" class="form-horizontal">
-      <fieldset>
+<form method="post" action="<?php echo $app->urlFor('creation_elements')?>" class="form-horizontal">
+   <fieldset>
         
         <!-- Form Name -->
         <legend>Créer un top</legend>
@@ -12,8 +9,7 @@
         <div class="form-group">
           <label class="col-md-4 control-label" for="title">Titre du top</label>  
           <div class="col-md-4">
-          <input id="title" name="title" type="text" placeholder="Titre" class="form-control input-md">
-            
+            <input id="title" name="title" type="text" placeholder="Titre" class="form-control input-md">
           </div>
         </div>
 
@@ -32,9 +28,22 @@
           <label class="col-md-4 control-label" for="category">Categorie</label>
           <div class="col-md-4">
             <select id="category" name="category" class="form-control">
+              
+              <?php foreach($this->data['category'] as $category){
+                   echo '<option value="'.$category["id"].'>'.$category["cat_title"].'</option>';
+              }?>
+             
               <option value="1">Humour</option>
               <option value="2">Film</option>
             </select>
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="title"> Combien d'elements voulez-vous mettre?</label>  
+          <div class="col-md-4">
+            <input id="nbElement" name="nbElement" type="text" placeholder="Nombre d'elements" class="form-control input-md">
           </div>
         </div>
 
@@ -47,8 +56,5 @@
           </div>
         </div>
 
-      </fieldset>
-    </form>
-
-  </div>
-</div>
+    </fieldset>
+</form>

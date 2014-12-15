@@ -4,7 +4,7 @@
 <ul>
   <?php foreach ($this->data['tops'] as $top): ?>
     <li>
-		<?php echo "<a href='tops-".$top['id']."'>".$top['title']."</a>" ?>
+		<?php echo "<a href='tops/".$top['id']."'>".$top['title']."</a>" ?>
     </li>
   <?php endforeach; ?>
 </ul>
