@@ -29,9 +29,9 @@
           <div class="col-md-4">
             <select id="category" name="category" class="form-control">
               
-              <?php //oreach($this->data['category'] as $category){?>
-                <!--  <option> <?php //echo "coucou" ?> </option>-->
-              <?php //}?>
+              <?php foreach($this->data['category'] as $category){
+                   echo '<option value="'.$category["id"].'>'.$category["cat_title"].'</option>';
+              }?>
              
               <option value="1">Humour</option>
               <option value="2">Film</option>
