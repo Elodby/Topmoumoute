@@ -159,13 +159,13 @@ session_start();
 
     //POST/top-creat
   $app->post('/top-creat', function () use ($app) {
-    $element_id = Element::add_element($_POST['title'], $_POST['description'] );
-    $vote_id = Vote::add_vote( $_POST['emplacement'],  $element_id, $_POST['top_id'] );
+    $element_id[] = Element::add_element($_POST['title'], $_POST['description'] );
+    $vote = Vote::add_vote( $_POST['emplacement'],  $element_id, $_POST['top_id'] );
     $top = Top::get_top($_POST['top_id'] );
 
     $app->render(
       'tops/top_creat.php',
-      array("element_id" => $element_id, "vote_id"=>$vote_id, "top"=>$top)
+      array("element_id" => $element_id, "vote"=>$vote, "top"=>$top)
     );
   })->name('top_creat');
      

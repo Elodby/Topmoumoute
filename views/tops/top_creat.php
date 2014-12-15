@@ -1,5 +1,5 @@
 <?php 
-var_dump($this->data['top']);
+var_dump($this->data['description']);
 ?>
 
 <div class="media">

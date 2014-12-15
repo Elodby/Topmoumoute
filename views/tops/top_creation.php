@@ -29,21 +29,13 @@
           <div class="col-md-4">
             <select id="category" name="category" class="form-control">
               
-              <?php foreach($this->data['category'] as $category){
+              <?php /*foreach($this->data['category'] as $category){
                    echo '<option value="'.$category["id"].'>'.$category["cat_title"].'</option>';
-              }?>
+              }*/?>
              
               <option value="1">Humour</option>
               <option value="2">Film</option>
             </select>
-          </div>
-        </div>
-
-
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="title"> Combien d'elements voulez-vous mettre?</label>  
-          <div class="col-md-4">
-            <input id="nbElement" name="nbElement" type="text" placeholder="Nombre d'elements" class="form-control input-md">
           </div>
         </div>
 
