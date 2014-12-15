@@ -16,7 +16,7 @@ class Element
         return $elements;
     }
 
-    static function get_elemtent($id){
+    static function get_element($id){
         global $bdd;
         
         $requete = $bdd->prepare("SELECT * FROM elements WHERE id=:id");
@@ -28,25 +28,18 @@ class Element
         return $element;
     }
 
-    static function add_element($param){
-    	global $bdd;
-    	
-    	$req = $bdd->prepare("INSERT INTO elements (title,description,image_url) VALUES (? , ? , ?)");
-    	$req->execute(array($param[''],$param[''],$param['']));
-        
-        return $bdd->lastInsertId();
-    }
-
-    static function add_elements($title, $description){
+    static function add_element($title, $description){
         global $bdd;
 
-        $req = $bdd->prepare("INSERT INTO tops (title, description) VALUES (:title, :description)");
+        $req = $bdd->prepare("INSERT INTO elements (title, description) VALUES (:title, :description)");
         $req->execute(array(
             'title'=>$title,
             'description' => $description
         ));
-    
-        return $bdd->lastInsertId();
+
+        $element_id = $bdd->lastInsertId();
+
+        return $element_id;
     }
 
     static function update_element($param){
