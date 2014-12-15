@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>  <!-- Latest compiled and minified CSS -->
-		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="<?php echo $app->urlFor('root')?>bootstrap/css/bootstrap.min.css">
 		<!-- Optional theme -->
 		<link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
 		<!-- Latest compiled and minified JavaScript -->
