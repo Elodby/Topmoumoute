@@ -1,12 +1,12 @@
 <?php 
-var_dump($this->data);
+var_dump($this->data['top']);
 ?>
 
 <div class="media">
   <div class="media-body">
 
   	<h2> <?php echo $this->data['top'][0]['to_title']; ?> </h2>
-  	<p><?php echo $this->data['top'][0]['description']; ?> </p>
+  	<p><?php echo $this->data['top'][0]['to_description']; ?> </p>
   	<div>
     	<a href="<?php echo "users-".$this->data['top'][0]['user_id']?>">
 			<?php echo "<h5><i>". $this->data['top'][0]['pseudo'] ."</i><h5>";?>

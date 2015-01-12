@@ -26,7 +26,7 @@ class Top
         global $bdd;
         //$requete = $bdd->prepare("SELECT tops.title 'to_title', elements.title 'el_title', users.pseudo, elements.description
 
-        $requete = $bdd->prepare("SELECT tops.id 'top_id', tops.title 'to_title', elements.title 'el_title', users.pseudo, users.id 'user_id', elements.description
+        $requete = $bdd->prepare("SELECT tops.id 'top_id', tops.title 'to_title', tops.description 'to_description', elements.title 'el_title', users.pseudo, users.id 'user_id', elements.description
                                     FROM tops
                                     LEFT JOIN votes ON tops.id = votes.top_id
                                     LEFT JOIN elements ON votes.element_id = elements.id
