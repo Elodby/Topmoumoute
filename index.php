@@ -42,14 +42,8 @@ session_start();
     $_SESSION['id']=User::connexion($_POST['pseudo'],$_POST['password']);
   $tops = Top::get_all_top();
     $app->render(
-<<<<<<< HEAD
       'accueil.php',
-		array("tops" => $tops) 
-=======
-      'tops/show_all.php',
-    array("tops" => $tops) 
->>>>>>> f5018ba99597e6c216a4c3a31576de4b106cc550
-    );
+		array("tops" => $tops));
   })->name('root_connexion');
  
 
@@ -135,7 +129,7 @@ session_start();
     );
   });
      //GET /tops-add
-	$app->get('/tops-add', function () use ($app) {
+	$app->get('/top-add', function () use ($app) {
     $app->render(
       'tops/top_creation.php'
     );
@@ -149,10 +143,6 @@ session_start();
       'tops/element_creation.php',
       array("tops" => $tops, "categories" => $categories)
     );
-<<<<<<< HEAD
-	})->name('creation_elements');
-	
-=======
   })->name('creation_elements');
   
 
@@ -169,8 +159,6 @@ session_start();
   })->name('top_creat');
      
 
-
->>>>>>> f5018ba99597e6c216a4c3a31576de4b106cc550
    //GET /tops/search
 	$app->get('/tops-search', function () use ($app) {
     $app->render(
