@@ -29,10 +29,11 @@ session_start();
 
   // GET /
   $app->get('/', function() use ($app) {
-    $tops = Top::get_all_top();
+    $tops = Top::get_best_tops();
+	$last_tops = Top::get_last_tops();
     $app->render( 
       'accueil.php', 
-      array("tops" => $tops
+      array("tops" => $tops, "last_tops" => $last_tops
       ) 
     );
   })->name('root'); // named route so I can use with "urlFor" method
@@ -40,10 +41,11 @@ session_start();
   //POST /root connexion
   $app->post('/', function() use ($app) {
     $_SESSION['id']=User::connexion($_POST['pseudo'],$_POST['password']);
-  $tops = Top::get_all_top();
+	$tops = Top::get_all_top();
+	$last_tops = Top::get_last_tops();
     $app->render(
       'accueil.php',
-		array("tops" => $tops));
+		array("tops" => $tops, "last_tops" => $last_tops));
   })->name('root_connexion');
  
 
@@ -101,7 +103,16 @@ session_start();
       'users/connexion.php' 
     );
   })->name('connexion');;  
-  
+ 
+   //GET /deconnexion
+  $app->get('/deconnexion', function () use ($app) {
+	session_destroy();
+	$_SESSION=[];
+    $app->render(
+      'users/connexion.php' 
+    );
+  })->name('deconnexion');; 
+ 
    //GET /inscription
   $app->get('/inscription', function () use ($app) {
     $app->render(

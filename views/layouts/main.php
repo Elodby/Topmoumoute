@@ -41,12 +41,12 @@
                 </form>
                 <ul class="nav navbar-nav navbar-right">
 					<li>
-				<?php if (isset($_SESSION)) {	echo 
-					"<a href='".$app->urlFor('account')."'>";//.$_SESSION['pseudo'];
+				<?php if (isset($_SESSION['pseudo'])) {	echo 
+					"<a href='".$app->urlFor('account')."'>".$_SESSION['pseudo']."<img class='text-center' src='".$_SESSION['avatar_url']."' style='height:25px' />";
                  } else { echo 
-					"<a href='".$app->urlFor('connexion')."'>" ;
+					"<a href='".$app->urlFor('connexion')."'><span class='glyphicon glyphicon-user' aria-hidden='true'></span>" ;
 				} ?>
-					<span class="glyphicon glyphicon-user" aria-hidden="true"></span></a></li>
+					</a></li>
 				</ul>
               </div>
             </nav>

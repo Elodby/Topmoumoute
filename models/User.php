@@ -77,6 +77,10 @@
 			  ));
 			$donnees=$req->fetchAll();  
 			$_SESSION['id']=$donnees[0]['id'];
+			$_SESSION['pseudo']=$donnees[0]['pseudo'];
+			$_SESSION['mail']=$donnees[0]['mail'];
+			$_SESSION['avatar_url']=$donnees[0]['avatar_url'];
+			$_SESSION['follower_nbr']=$donnees[0]['follower_nbr'];
 			  return $_SESSION['id'];
 			}else{
 			  return false;

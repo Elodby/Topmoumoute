@@ -1,4 +1,3 @@
-
 <div class="row">
 	<div class="col-md-12">
 		<div class="page-header">
@@ -19,7 +18,7 @@
 			</a>
 		  </div>
 			<?php endforeach; ?>
-			   <div class="col-md-3">
+			  <!-- <div class="col-md-3">
 				<div class="thumbnail">
 				  <img src="pictures/noel.jpg" width="300px" alt="">
 				  <div class="caption">
@@ -55,7 +54,7 @@
 
 			</div>
 		  </div>
-		</div>
+		</div>-->
 
 					<div class="row">
 		  <div class="col-md-12">
@@ -63,59 +62,24 @@
 			  <h1><small>Les derniers tops :</small></h1>
 			</div>
 			<div class="row">
-			  <div class="col-md-3">
-				<div class="thumbnail">
-				  <img src="pictures/serie.jpg" width="300px" alt="">
-				  <div class="caption">
-					<h3>Vos séries préférés :</h3>
-					<p>On est fans.</p>
-				  </br>
-					<p><a href="#" class="btn btn-info" role="button">Toper !</a></p>
-				  </div>
-				</div>
+			<?php foreach ($this->data['last_tops'] as $top): ?>
+		  <div class="col-md-3">
+		   <a href='<?php echo "tops-".$top['id']?>'>
+			<div class="thumbnail">
+			  <img src="<?php echo $top['image_url'] ?>" width="300px" alt="">
+			  <div class="caption">
+				<h3><?php echo $top['title'] ?></h3>
+				<p><?php echo $top['description'] ?></p>
+				<p><a href="#" class="btn btn-info" role="button">Toper !</a></p>
 			  </div>
-
-			   <div class="col-md-3">
-				<div class="thumbnail">
-				  <img src="pictures/appli.png" width="300px" alt="">
-				  <div class="caption">
-					<h3>Votre top Applis : </h3>
-					<p>Dites nous tout !</p>
-				  </br>
-					<p><a href="#" class="btn btn-info" role="button">Toper !</a></p>
-				  </div>
-				</div>
-			  </div>
-
-			   <div class="col-md-3">
-				<div class="thumbnail">
-				  <img src="pictures/pc.jpg" width="300px" alt="">
-				  <div class="caption">
-					<h3>Vos tops jeux sur pc :</h3>
-					<p>Avouez !</p>
-				  </br>
-					<p><a href="#" class="btn btn-info" role="button">Toper !</a></p>
-				  </div>
-				</div>
-			  </div>
-
-			   <div class="col-md-3">
-				<div class="thumbnail">
-				  <img src="pictures/xboxps.jpg" width="300px" alt="">
-				  <div class="caption">
-					<h3>Vos jeux sur Xbox/ Ps :</h3>
-					<p>Allez les geeks !</p>
-				  </br>
-					<p><a href="#" class="btn btn-info" role="button">Toper !</a></p>
-				  </div>
-				</div>
-			  </div>
-
 			</div>
+			</a>
 		  </div>
-		</div>
+			<?php endforeach; ?>
+			</div>
+			  
 
-				 <div class="row">
+		 <div class="row">
 		  <div class="col-md-12">
 			<div class="page-header">
 			  <h1><small>Les tops que vous suivez :</small></h1>
