@@ -31,13 +31,40 @@ class Element
     static function add_element($title, $description){
         global $bdd;
 
-        $req = $bdd->prepare("INSERT INTO elements (title, description) VALUES (:title, :description)");
-        $req->execute(array(
-            'title'=>$title,
-            'description' => $description
-        ));
+        $req = $bdd->prepare("  INSERT INTO elements (title, description) VALUES (:title, :description)");
+       // var_dump($description);
+       // die();
 
-        $element_id = $bdd->lastInsertId();
+        $req->execute(array(
+            'title'=>$title[0],
+            'description' => $description[0]
+        ));
+         $element_id[]=$bdd->lastInsertId();
+
+         $req->execute(array(
+            'title'=>$title[1],
+            'description' => $description[1]
+        ));
+         $element_id[]=$bdd->lastInsertId();
+
+         $req->execute(array(
+            'title'=>$title[2],
+            'description' => $description[2]
+        ));
+         $element_id[]=$bdd->lastInsertId();
+
+         $req->execute(array(
+            'title'=>$title[3],
+            'description' => $description[3]
+        ));
+         $element_id[]=$bdd->lastInsertId();
+
+         $req->execute(array(
+            'title'=>$title[4],
+            'description' => $description[4]
+        ));
+         $element_id[]=$bdd->lastInsertId();
+
 
         return $element_id;
     }

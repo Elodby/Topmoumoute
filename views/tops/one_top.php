@@ -1,8 +1,6 @@
 <div class="media">
   <div class="media-body">
-    <?php 
-			
-			echo "<h2>". $this->data['top'][0]['to_title'] ."</h2>"; ?>
+    <?php echo "<h2>".$this->data['top'][0]['to_title']."</h2>"; ?>
     <div>
     	<!--<a href="<?php //"../users/".$user['id']?>">-->
 

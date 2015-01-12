@@ -40,10 +40,15 @@ session_start();
   //POST /root connexion
   $app->post('/', function() use ($app) {
     $_SESSION['id']=User::connexion($_POST['pseudo'],$_POST['password']);
-	$tops = Top::get_all_top();
+  $tops = Top::get_all_top();
     $app->render(
+<<<<<<< HEAD
       'accueil.php',
 		array("tops" => $tops) 
+=======
+      'tops/show_all.php',
+    array("tops" => $tops) 
+>>>>>>> f5018ba99597e6c216a4c3a31576de4b106cc550
     );
   })->name('root_connexion');
  
@@ -51,7 +56,7 @@ session_start();
 ///USERS////
  
   // GET /users-:user_id
-	$app->get('/users-:user_id', function ($id) use ($app) {
+  $app->get('/users-:user_id', function ($id) use ($app) {
     $user = User::getUser($id);
     $app->render(
       'users/show.php', 
@@ -59,19 +64,19 @@ session_start();
     );
   })->name('user');
   
-	//POST /users-:user_id
-	$app->post('/users-me', function () use ($app) {
-	// Si le formulaire est rempli
-	if(isset($_POST['mail']) AND $_POST['mail']!="" AND isset($_POST['password']) AND $_POST['password']!="" AND $_POST['password']==$_POST['password2']) 
-		User::updateUser($_POST);
+  //POST /users-:user_id
+  $app->post('/users-me', function () use ($app) {
+  // Si le formulaire est rempli
+  if(isset($_POST['mail']) AND $_POST['mail']!="" AND isset($_POST['password']) AND $_POST['password']!="" AND $_POST['password']==$_POST['password2']) 
+    User::updateUser($_POST);
     $user = User::getUser($_POST['id']);
     $app->render(
       'users/show.php', 
       array("user" => $user)
     );
   })->name('user_update');
-	
-	
+  
+  
     // GET /users
   $app->get('/users', function() use ($app) {
     $users = User::all();
@@ -86,13 +91,13 @@ session_start();
     $user = User::getUser($_SESSION['id']);
     $app->render(
       'users/profil.php',
-	   array("user" => $user)
+     array("user" => $user)
     );
   })->name('account');
   
   //post /account
   $app->post('/account', function () use ($app) {
-	User::inscription($_POST['pseudo'],$_POST['password'],$_POST['password2'],$_POST['mail']); 
+  User::inscription($_POST['pseudo'],$_POST['password'],$_POST['password2'],$_POST['mail']); 
     $app->response->redirect($app->urlFor('user'),303);
   })->name('account_create');
 
@@ -144,8 +149,28 @@ session_start();
       'tops/element_creation.php',
       array("tops" => $tops, "categories" => $categories)
     );
+<<<<<<< HEAD
 	})->name('creation_elements');
 	
+=======
+  })->name('creation_elements');
+  
+
+    //POST/top-creat
+  $app->post('/top-creat', function () use ($app) {
+    $element_id[] = Element::add_element($_POST['title'], $_POST['description'] );
+    $vote = Vote::add_vote( $_POST['emplacement'],  $element_id, $_POST['top_id'] );
+    $top = Top::get_top($_POST['top_id'] );
+
+    $app->render(
+      'tops/top_creat.php',
+      array("element_id" => $element_id, "vote"=>$vote, "top"=>$top)
+    );
+  })->name('top_creat');
+     
+
+
+>>>>>>> f5018ba99597e6c216a4c3a31576de4b106cc550
    //GET /tops/search
 	$app->get('/tops-search', function () use ($app) {
     $app->render(
