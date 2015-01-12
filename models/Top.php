@@ -56,6 +56,42 @@ class Top
     
         return $bdd->lastInsertId();
     }
-
+	
+	static function get_last_tops(){
+        global $bdd;
+        
+        $requete = $bdd->prepare("SELECT tops.id, tops.title, tops.description, tops.date, tops.category_id, tops.user_id, tops.source_id, el.image_url 
+									FROM tops
+									LEFT JOIN votes 
+									ON tops.id = votes.top_id
+									LEFT JOIN elements el
+									ON votes.element_id = el.id
+									WHERE votes.emplacement = 1
+									ORDER BY tops.date DESC
+									LIMIT 4");
+          // l'execution 
+        $requete->execute();
+          $tops = $requete->fetchAll();
+        
+        return $tops;
+    }
+	
+	static function get_best_tops(){
+        global $bdd;
+        
+        $requete = $bdd->prepare("SELECT tops.id, tops.title, tops.description, tops.date, tops.category_id, tops.user_id, tops.source_id, el.image_url 
+									FROM tops
+									LEFT JOIN votes 
+									ON tops.id = votes.top_id
+									LEFT JOIN elements el
+									ON votes.element_id = el.id
+									WHERE votes.emplacement = 1
+									LIMIT 4");
+          // l'execution 
+        $requete->execute();
+          $tops = $requete->fetchAll();
+        
+        return $tops;
+    }
 }
 ?>
