@@ -8,7 +8,13 @@ class Top
     static function get_all_top(){
         global $bdd;
         
-        $requete = $bdd->prepare("SELECT * FROM tops");
+        $requete = $bdd->prepare("SELECT tops.id, tops.title, tops.description, tops.date, tops.category_id, tops.user_id, tops.source_id, el.image_url 
+									FROM tops
+									LEFT JOIN votes 
+									ON tops.id = votes.top_id
+									LEFT JOIN elements el
+									ON votes.element_id = el.id
+									WHERE votes.emplacement = 1");
           // l'execution 
         $requete->execute();
           $tops = $requete->fetchAll();
@@ -19,7 +25,7 @@ class Top
     static function get_top($id){
         global $bdd;
         
-        $requete = $bdd->prepare("SELECT tops.id 'top_id', tops.title 'to_title', elements.title 'el_title', users.pseudo, elements.description
+        $requete = $bdd->prepare("SELECT tops.title 'to_title', elements.title 'el_title', users.pseudo, elements.description
                                     FROM tops
                                     LEFT JOIN votes ON tops.id = votes.top_id
                                     LEFT JOIN elements ON votes.element_id = elements.id
