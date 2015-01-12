@@ -19,7 +19,7 @@ class Top
     static function get_top($id){
         global $bdd;
         
-        $requete = $bdd->prepare("SELECT tops.id 'top_id', tops.title 'to_title', elements.title 'el_title', users.pseudo, elements.description
+        $requete = $bdd->prepare("SELECT tops.id 'top_id', tops.title 'to_title', elements.title 'el_title', users.pseudo, users.id 'user_id', elements.description
                                     FROM tops
                                     LEFT JOIN votes ON tops.id = votes.top_id
                                     LEFT JOIN elements ON votes.element_id = elements.id
@@ -34,13 +34,16 @@ class Top
         return $top;
     }
 
-    static function add_top($title, $description){
+    static function add_top($title, $description, $category_id){
     	global $bdd;
+        
+        $req = $bdd->prepare("INSERT INTO tops (title, description, category_id) VALUES (:title, :description, :category_id)");
+        
 
-        $req = $bdd->prepare("INSERT INTO tops (title, description) VALUES (:title, :description)");
         $req->execute(array(
             'title'=>$title,
-            'description' => $description
+            'description' => $description,
+            'category_id'=>$category_id
         ));
     
         return $bdd->lastInsertId();

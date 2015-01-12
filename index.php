@@ -41,10 +41,10 @@ session_start();
   //POST /root connexion
   $app->post('/', function() use ($app) {
     $_SESSION['id']=User::connexion($_POST['pseudo'],$_POST['password']);
-	$tops = Top::get_all_top();
+  $tops = Top::get_all_top();
     $app->render(
       'tops/show_all.php',
-		array("tops" => $tops) 
+    array("tops" => $tops) 
     );
   })->name('root_connexion');
  
@@ -52,7 +52,7 @@ session_start();
 ///USERS////
  
   // GET /users-:user_id
-	$app->get('/users-:user_id', function ($id) use ($app) {
+  $app->get('/users-:user_id', function ($id) use ($app) {
     $user = User::getUser($id);
     $app->render(
       'users/show.php', 
@@ -60,19 +60,19 @@ session_start();
     );
   })->name('user');
   
-	//POST /users-:user_id
-	$app->post('/users-me', function () use ($app) {
-	// Si le formulaire est rempli
-	if(isset($_POST['mail']) AND $_POST['mail']!="" AND isset($_POST['password']) AND $_POST['password']!="" AND $_POST['password']==$_POST['password2']) 
-		User::updateUser($_POST);
+  //POST /users-:user_id
+  $app->post('/users-me', function () use ($app) {
+  // Si le formulaire est rempli
+  if(isset($_POST['mail']) AND $_POST['mail']!="" AND isset($_POST['password']) AND $_POST['password']!="" AND $_POST['password']==$_POST['password2']) 
+    User::updateUser($_POST);
     $user = User::getUser($_POST['id']);
     $app->render(
       'users/show.php', 
       array("user" => $user)
     );
   })->name('user_update');
-	
-	
+  
+  
     // GET /users
   $app->get('/users', function() use ($app) {
     $users = User::all();
@@ -87,13 +87,13 @@ session_start();
     $user = User::getUser($_SESSION['id']);
     $app->render(
       'users/profil.php',
-	   array("user" => $user)
+     array("user" => $user)
     );
   })->name('account');
   
   //post /account
   $app->post('/account', function () use ($app) {
-	User::inscription($_POST['pseudo'],$_POST['password'],$_POST['password2'],$_POST['mail']); 
+  User::inscription($_POST['pseudo'],$_POST['password'],$_POST['password2'],$_POST['mail']); 
     $app->response->redirect($app->urlFor('user'),303);
   })->name('account_create');
 
@@ -129,7 +129,7 @@ session_start();
 
 
   //GET /tops/:top_id
-  $app->get('/tops/:top_id', function ($id) use ($app) {
+  $app->get('/tops-:top_id', function ($id) use ($app) {
     $top = Top::get_top($id);
     $app->render(
       'tops/one_top.php',

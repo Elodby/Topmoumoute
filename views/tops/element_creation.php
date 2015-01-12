@@ -1,11 +1,11 @@
 <form method="post" action="<?php echo $app->urlFor('top_creat')?>" class="form-horizontal">
 	
-        
+
         <!-- Form Name -->
    <legend>Créer un element</legend>
 
         <input type="hidden" name="top_id", value="<?php echo $this->data['top_id']?>"/>
-
+        <input type="hidden" name="cat_id" value="<?php echo $this->data['category']?>" />
 
 
           <div class="unElement">  
