@@ -6,7 +6,7 @@
 
         <input type="hidden" name="top_id", value="<?php echo $this->data['top_id']?>"/>
         <input type="hidden" name="cat_id" value="<?php echo $this->data['category']?>" />
-
+<?php var_dump($this->data); ?>
 
           <div class="unElement">  
             <div class="form-group">

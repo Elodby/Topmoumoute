@@ -1,5 +1,5 @@
 <?php 
-var_dump($this->data['description']);
+var_dump($this->data);
 ?>
 
 <div class="media">
@@ -8,11 +8,9 @@ var_dump($this->data['description']);
   	<h2> <?php echo $this->data['top'][0]['to_title']; ?> </h2>
   	<p><?php echo $this->data['top'][0]['description']; ?> </p>
   	<div>
-    	<!--<a href="<?php //"../users/".$user['id']?>">-->
-
-		<!--<a href="<?php //echo $app->urlFor('user') ?>">
-			<?php //echo "<h5><i>". $this->data['top'][0]['pseudo'] ."</i><h5>";?>
-		</a>-->
+    	<a href="<?php echo "users-".$this->data['top'][0]['user_id']?>">
+			<?php echo "<h5><i>". $this->data['top'][0]['pseudo'] ."</i><h5>";?>
+		</a>
 			<ul>
 				<?php foreach ($this->data['top'] as $elements => $value) { 
 					echo "<li><h3>". $value['el_title'] ."</h3>";

@@ -10,6 +10,7 @@ session_start();
   require 'models/Category.php';
   require 'models/Element.php';
   require 'models/Top.php';
+  require 'models/Vote.php';
   //require 'models/inscription.php';
 
   // Slim initialisation
@@ -128,20 +129,22 @@ session_start();
       array("top" => $top)
     );
   });
-     //GET /tops-add
+     //GET /top-add
 	$app->get('/top-add', function () use ($app) {
+    $categories = Category::get_all_category();
     $app->render(
-      'tops/top_creation.php'
+      'tops/top_creation.php',
+      array("categories" => $categories)
     );
   });
 
    //POST /tops-add-element
 	$app->post('/tops-add-elements', function () use ($app) {
-    $tops = Top::add_top($_POST['title'], $_POST['description']);
+    $tops = Top::add_top($_POST['title'], $_POST['description'], $_POST['category'], $_SESSION['id']);
     $categories = Category::get_all_category();
     $app->render(
       'tops/element_creation.php',
-      array("tops" => $tops, "categories" => $categories)
+      array("top_id" => $tops, "categories" => $categories)
     );
   })->name('creation_elements');
   
@@ -149,7 +152,7 @@ session_start();
     //POST/top-creat
   $app->post('/top-creat', function () use ($app) {
     $element_id[] = Element::add_element($_POST['title'], $_POST['description'] );
-    $vote = Vote::add_vote( $_POST['emplacement'],  $element_id, $_POST['top_id'] );
+    $vote = Vote::add_vote( $_POST['emplacement'], $_SESSION['id'], $element_id, $_POST['top_id'] );
     $top = Top::get_top($_POST['top_id'] );
 
     $app->render(

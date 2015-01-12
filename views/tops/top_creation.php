@@ -4,7 +4,7 @@
     <!-- Form Name -->
     <legend>Créer un top</legend>
 
-<?php //var_dump($this->data[$_SESSION['id']]); ?>
+<?php var_dump($this->data['categories']); ?>
     <!-- Text input-->
     <div class="form-group">
       <label class="col-md-4 control-label" for="title">Titre du top</label>  
@@ -22,22 +22,23 @@
       </div>
     </div>
 
-
-    <!-- Select Basic -->
-    <div class="form-group">
-      <label class="col-md-4 control-label" for="category">Categorie</label>
-      <div class="col-md-4">
-        <select id="category" name="category" class="form-control">
-         
-          <?php foreach($this->data['category'] as $category){
-            $category_id = $category['cat_id'];
-          ?>
-            <option value= "<?php echo $category_id ?>" > <?php echo $category['cat_title']; ?> </option>;
-          <?php } ?>
-         
-        </select>
+    <?php if (isset($this->data['categories'])){ ?>
+      <!-- Select Basic -->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="category">Categorie</label>
+        <div class="col-md-4">
+          <select id="category" name="category" class="form-control">
+           
+            <?php foreach($this->data['categories'] as $category){
+              $category_id = $category['cat_id'];
+            ?>
+              <option value= "<?php echo $category_id ?>" > <?php echo $category['cat_title']; ?> </option>;
+            <?php } ?>
+           
+          </select>
+        </div>
       </div>
-    </div>
+    <?php }?>
 
 
     <!-- Button -->

@@ -41,16 +41,17 @@ class Top
         return $top;
     }
 
-    static function add_top($title, $description, $category_id){
+    static function add_top($title, $description, $category_id, $user_id){
     	global $bdd;
         
-        $req = $bdd->prepare("INSERT INTO tops (title, description, category_id) VALUES (:title, :description, :category_id)");
+        $req = $bdd->prepare("INSERT INTO tops (title, description, date, category_id, user_id) VALUES (:title, :description, CURDATE(), :category_id, :user_id)");
         
 
         $req->execute(array(
             'title'=>$title,
             'description' => $description,
-            'category_id'=>$category_id
+            'category_id'=>$category_id,
+            'user_id' => $user_id
         ));
     
         return $bdd->lastInsertId();

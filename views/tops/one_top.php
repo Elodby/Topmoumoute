@@ -2,9 +2,7 @@
   <div class="media-body">
     <?php echo "<h2>".$this->data['top'][0]['to_title']."</h2>"; ?>
     <div>
-    	<!--<a href="<?php //"../users/".$user['id']?>">-->
-
-		<a href="<?php echo $app->urlFor('user') ?>">
+    	<a href="<?php echo "users-".$this->data['top'][0]['user_id']?>">
 			<?php echo "<h5><i>". $this->data['top'][0]['pseudo'] ."</i><h5>";?>
 		</a>
 			<ul>
