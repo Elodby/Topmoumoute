@@ -94,8 +94,12 @@ session_start();
   
   //post /account
   $app->post('/account', function () use ($app) {
-  User::inscription($_POST['pseudo'],$_POST['password'],$_POST['password2'],$_POST['mail']); 
-    $app->response->redirect($app->urlFor('user'),303);
+    $id = User::inscription($_POST['pseudo'],$_POST['password'],$_POST['password2'],$_POST['mail']); 
+    $user = User::getCurrentUser($id);
+    $message = "Inscription réussie ! Tu peux maintenant modifier ton profil, créer, suivre et partager des tops !";
+    $app->render(
+      'users/profil.php',
+     array("user" => $user, "message" => $message));
   })->name('account_create');
 
   //GET /connexion
@@ -103,7 +107,7 @@ session_start();
     $app->render(
       'users/connexion.php' 
     );
-  })->name('connexion');;  
+  })->name('connexion'); 
  
    //GET /deconnexion
   $app->get('/deconnexion', function () use ($app) {
@@ -112,14 +116,16 @@ session_start();
     $app->render(
       'users/connexion.php' 
     );
-  })->name('deconnexion');; 
+  })->name('deconnexion');
  
    //GET /inscription
   $app->get('/inscription', function () use ($app) {
+
+    session_destroy();
     $app->render(
       'users/inscription.php' 
     );
-  });
+  })->name('inscription');
   
  ////TOPS////
  

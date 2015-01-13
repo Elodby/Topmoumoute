@@ -40,14 +40,25 @@
                   <button type="submit" class="btn btn-default">Submit</button>
                 </form>
                 <ul class="nav navbar-nav navbar-right">
-					<li>
-				<?php if (isset($_SESSION['pseudo'])) {	echo 
-					"<a href='".$app->urlFor('account')."'>".$_SESSION['pseudo']."<img class='text-center' src='".$_SESSION['avatar_url']."' style='height:25px' />";
-                 } else { echo 
-					"<a href='".$app->urlFor('connexion')."'><span class='glyphicon glyphicon-user' aria-hidden='true'></span>" ;
-				} ?>
-					</a></li>
-				</ul>
+                   <li class="dropdown">
+                    
+          				<?php if (isset($_SESSION['pseudo'])) {	echo 
+                    "<a class='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false'>".$_SESSION['pseudo']."<span style='margin-left:10px' class='glyphicon glyphicon-user' aria-hidden='true'></span></span></a>
+                    <ul class='dropdown-menu' role='menu'>
+                      <li><a href='".$app->urlFor('account')."'>Profil</a></li>
+                      <li><a href='".$app->urlFor('deconnexion')."''>Déconnexion</a></li>
+                    </ul>
+                    ";
+                           } else { echo 
+          					"<a><span class='glyphicon glyphicon-user' aria-hidden='true'></span></a>"."          				
+                    <ul class='dropdown-menu' role='menu'>
+                      <li><a href='".$app->urlFor('connexion')."'>Connexion</a></li>
+                      <li><a href='".$app->urlFor('inscription')."'>Inscription</a></li>
+                    </ul>
+                    ";
+                    } ?>
+                </li>
+				        </ul>
               </div>
             </nav>
 	<?php 

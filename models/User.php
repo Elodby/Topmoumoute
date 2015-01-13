@@ -25,6 +25,23 @@
 		
 		return $user;
     }
+
+    static function getCurrentUser($id) {
+      // "SELECT * from users WHERE ID = $user_id" SQL request
+		global $bdd;
+
+		$requete = $bdd->prepare('SELECT * FROM users WHERE id=:id'); 
+			// l'execution 
+		$requete->bindParam(':id', $id);
+		$requete->execute();
+
+		$user = $requete->fetch(); 
+			$_SESSION['id']=$user['id'];
+			$_SESSION['pseudo']=$user['pseudo'];
+			$_SESSION['mail']=$user['mail'];
+
+		return $user;
+    }
 	
 	static function updateUser($param){
 		global $bdd;
@@ -57,8 +74,9 @@
 		  'mail' => strtolower($mail)
 		  ));
 		//Récupération de l'id qui vient juste d'être insérée
-		$_SESSION['id'] = $bdd->lastInsertId(); 
-		return true;
+		$_SESSION['id'] = $bdd->lastInsertId();
+
+		return $bdd->lastInsertId();
 		}
 	}
 	

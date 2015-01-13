@@ -1,10 +1,10 @@
 <div class="row">
   <div class="col-md-4"></div>
   <div class="col-md-4">
-	<div class="top">
+    <?php if (isset($this->data["message"])) echo "<div class='alert alert-info' role='alert'>".$this->data["message"]."</div>"; ?>
     <h2 class="text-center"><?php echo $this->data['user']['pseudo'] ?></h2>
 	<img class="text-center" src='<?php echo $this->data['user']['avatar_url'] ?>' style='height:100px' />
-</div>	</div>
+	</div>
   <div class="col-md-4"></div>
 </div>
 
