@@ -93,5 +93,11 @@ class Top
         
         return $tops;
     }
+/*
+    static function search(){
+        global $bdd;
+
+        $req = $bdd->prepare("SELECT * FROM tops WHERE nom_fonction LIKE '%mysql%' ORDER BY nom_fonction")
+    }*/
 }
 ?>
