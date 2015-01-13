@@ -1,6 +1,4 @@
-<?php 
-var_dump($this->data['top']);
-?>
+<?php //var_dump($this->data['top']); ?>
 
 <div class="media">
   <div class="media-body">
