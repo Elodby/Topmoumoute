@@ -21,8 +21,8 @@
 			</ul>
     </div>
 </br>
-    <a class="fb_share"  name="fb_share" type="button_count" share_url="http://localhost/Topmoumoute/tops-<?php echo $this->data['top'][0]['top_id']; ?>" style="margin-bottom:5px"></a>
-  	</br><a href="https://twitter.com/share" style="margin-top:5px;" class="twitter-share-button">Tweet</a>
+    <a name="fb_share" type="button_count" share_url="http://localhost/Topmoumoute/tops-<?php echo $this->data['top'][0]['top_id']; ?>" style="margin-bottom:5px"></a>
+  	</br><a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
 
   </div>
 </div>

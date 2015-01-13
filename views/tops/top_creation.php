@@ -4,7 +4,7 @@
     <!-- Form Name -->
     <legend>Créer un top</legend>
 
-<?php var_dump($this->data['categories']); ?>
+<?php //var_dump($this->data['categories']); ?>
     <!-- Text input-->
     <div class="form-group">
       <label class="col-md-4 control-label" for="title">Titre du top</label>  
