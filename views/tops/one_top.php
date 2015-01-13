@@ -6,7 +6,6 @@
 
 <div class="media">
   <div class="media-body">
-<?php //var_dump($this->data['top'][0]['top_id']); ?>
 
     <?php echo "<h2>".$this->data['top'][0]['to_title']."</h2>"; ?>
     <div>

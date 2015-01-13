@@ -8,11 +8,17 @@
 		<script src="bootstrap/js/bootstrap.min.js"></script>
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
 		<meta charset="utf-8" />
   </head>
   <body>
-  	
-     <body>
+    <style>
+     .twitter-share-button{
+      margin-top: 5px;
+     }
+    </style>
     <div class="row">
       <div class="col-md-10">
         <div class="row">
@@ -65,5 +71,9 @@
             // my view content will be placed here
             echo $yield 
           ?>
+        </div>
+        </div>
+        </div>
+        </div>
   </body>
 </html>

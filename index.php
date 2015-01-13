@@ -142,7 +142,7 @@ session_start();
   $app->get('/tops-:top_id', function ($id) use ($app) {
     $top = Top::get_top($id);
     $app->render(
-      'tops/one_top.php',
+      'tops/afficherTop.php',
       array("top" => $top)
     );
   });
