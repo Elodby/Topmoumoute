@@ -14,11 +14,12 @@
 		<meta charset="utf-8" />
   </head>
   <body>
+    <!--
     <style>
      .twitter-share-button{
       margin-top: 5px;
      }
-    </style>
+    </style>-->
     <div class="row">
       <div class="col-md-10">
         <div class="row">

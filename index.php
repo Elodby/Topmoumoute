@@ -173,7 +173,7 @@ session_start();
     $top = Top::get_top($_POST['top_id'] );
 
     $app->render(
-      'tops/top_creat.php',
+      'tops/afficherTop.php',
       array("element_id" => $element_id, "vote"=>$vote, "top"=>$top)
     );
   })->name('top_creat');
