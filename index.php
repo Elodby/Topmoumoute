@@ -42,11 +42,19 @@ session_start();
   //POST /root connexion
   $app->post('/', function() use ($app) {
     $_SESSION['id']=User::connexion($_POST['pseudo'],$_POST['password']);
-	$tops = Top::get_all_top();
-	$last_tops = Top::get_last_tops();
-    $app->render(
-      'accueil.php',
-		array("tops" => $tops, "last_tops" => $last_tops));
+    if($_SESSION['id']!=false){
+    	$tops = Top::get_best_tops();
+    	$last_tops = Top::get_last_tops();
+      $app->flashNow('success', 'Connexion réussie !');
+        $app->render(
+          'accueil.php',
+    		array("tops" => $tops, "last_tops" => $last_tops));
+    }
+    else {
+      $app->flashNow('error', 'Erreur lors de la connexion, veuillez vérifier votre pseudo et votre mot de passe');
+      $app->render(
+      'users/connexion.php');
+    }
   })->name('root_connexion');
  
 
@@ -62,7 +70,7 @@ session_start();
   })->name('user');
   
   //POST /users-:user_id
-  $app->post('/users-me', function () use ($app) {
+  $app->post('/update_user', function () use ($app) {
   // Si le formulaire est rempli
   if(isset($_POST['mail']) AND $_POST['mail']!="" AND isset($_POST['password']) AND $_POST['password']!="" AND $_POST['password']==$_POST['password2']) 
     User::updateUser($_POST);
@@ -87,19 +95,27 @@ session_start();
   $app->get('/account', function () use ($app) {
     $user = User::getUser($_SESSION['id']);
     $app->render(
-      'users/profil.php',
+      'users/show.php',
      array("user" => $user)
     );
   })->name('account');
+
+  $app->get('/update', function () use ($app) {
+    $user = User::getUser($_SESSION['id']);
+    $app->render(
+      'users/profil.php',
+     array("user" => $user)
+    );
+  })->name('update_account');
   
   //post /account
   $app->post('/account', function () use ($app) {
     $id = User::inscription($_POST['pseudo'],$_POST['password'],$_POST['password2'],$_POST['mail']); 
     $user = User::getCurrentUser($id);
-    $message = "Inscription réussie ! Tu peux maintenant modifier ton profil, créer, suivre et partager des tops !";
+    $app->flashNow('success',"Inscription réussie ! Tu peux maintenant modifier ton profil, créer, suivre et partager des tops !");
     $app->render(
-      'users/profil.php',
-     array("user" => $user, "message" => $message));
+      'users/show.php',
+     array("user" => $user));
   })->name('account_create');
 
   //GET /connexion
@@ -148,21 +164,35 @@ session_start();
   });
      //GET /top-add
 	$app->get('/top-add', function () use ($app) {
+    if (isset($_SESSION['id']) && isset($_SESSION['pseudo'])) {
     $categories = Category::get_all_category();
     $app->render(
       'tops/top_creation.php',
       array("categories" => $categories)
     );
-  });
+    }
+    else { 
+      $app->flashNow('error',"Veuillez vous connecter pour accéder à ce contenu.");
+      $app->render(
+      'layouts/blank.php');
+    }
+    })->name('top-add');
 
    //POST /tops-add-element
 	$app->post('/tops-add-elements', function () use ($app) {
+    if (isset($_SESSION['id']) && isset($_SESSION['pseudo'])) {
     $tops = Top::add_top($_POST['title'], $_POST['description'], $_POST['category'], $_SESSION['id']);
     $categories = Category::get_all_category();
     $app->render(
       'tops/element_creation.php',
       array("top_id" => $tops, "categories" => $categories)
     );
+    }
+    else { 
+      $app->flashNow('error',"Veuillez vous connecter pour accéder à ce contenu.");
+      $app->render(
+      'layouts/blank.php');
+    }
   })->name('creation_elements');
   
 

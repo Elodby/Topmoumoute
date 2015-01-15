@@ -3,9 +3,9 @@
   <head>  <!-- Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="<?php echo $app->urlFor('root')?>bootstrap/css/bootstrap.min.css">
 		<!-- Optional theme -->
-		<link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
+		<link rel="stylesheet" href="<?php echo $app->urlFor('root')?>bootstrap/css/bootstrap-theme.min.css">
 		<!-- Latest compiled and minified JavaScript -->
-		<script src="bootstrap/js/bootstrap.min.js"></script>
+		<script src="<?php echo $app->urlFor('root')?>bootstrap/js/bootstrap.min.js"></script>
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script>
@@ -39,7 +39,7 @@
                   <button type="submit" class="btn btn-default">Submit</button>
                 </form>
                 <ul class="nav navbar-nav navbar-right">
-                  
+
                   <?php  if (isset($_SESSION['id']) && isset($_SESSION['pseudo'])) { ?>
                   <li><a href='<?php echo $app->urlFor('account'); ?>'><?php echo $_SESSION['pseudo']; ?><span style='margin-left:10px' class='glyphicon glyphicon-user' aria-hidden='true'></span></a></li>
                    <li><a href='<?php echo $app->urlFor('deconnexion'); ?>'><span class="glyphicon glyphicon-off" aria-hidden='true'></span></a></li>
@@ -52,7 +52,18 @@
 				        </ul>
               </div>
             </nav>
-	<?php 
+            <?php if ($flash['success']): ?>
+                <div class="alert alert-info ">
+                  <?php echo $flash['success'] ?>
+                </div>
+              <?php endif ?>
+
+              <?php if ($flash['error']): ?>
+                <div class="alert alert-danger">
+                  <?php echo $flash['error'] ?>
+                </div>
+          <?php endif ?>
+	       <?php 
             // my view content will be placed here
             echo $yield 
           ?>

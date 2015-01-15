@@ -32,9 +32,4 @@
 </fieldset>
 </form>
   <label class="col-md-4 control-label" for="submit"></label>
-  <a href="<?php echo $app->urlFor('inscription') ?>"><button id="inscription" name="inscription" class="btn btn-warning" style="margin-left:10px;">Inscription</button></a>
-<div class="row">
-  <div class="col-md-4">
-    
-   </div> 
- </div> 
+  <a href="<?php echo $app->urlFor('inscription') ?>"><button id="inscription" name="inscription" class="btn btn-warning" style="margin-left:10px; margin-bottom:10px;">Inscription</button></a>
