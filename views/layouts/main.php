@@ -30,15 +30,7 @@
               </div>
               <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                  <li><a href="#">Link</a></li>
-                  <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Catégories<span class="caret"></span></a>
-                    <ul class="dropdown-menu" role="menu">
-                      <li><a href="#">Catégorie 1</a></li>
-                      <li><a href="#">Catégorie 1</a></li>
-                      <li><a href="#">Catégorie 1</a></li>
-                    </ul>
-                  </li>
+                  
                 </ul>
                 <form class="navbar-form navbar-left" role="search">
                   <div class="form-group">
@@ -47,24 +39,16 @@
                   <button type="submit" class="btn btn-default">Submit</button>
                 </form>
                 <ul class="nav navbar-nav navbar-right">
-                   <li class="dropdown">
-                    
-          				<?php if (isset($_SESSION['pseudo'])) {	echo 
-                    "<a class='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false'>".$_SESSION['pseudo']."<span style='margin-left:10px' class='glyphicon glyphicon-user' aria-hidden='true'></span></span></a>
-                    <ul class='dropdown-menu' role='menu'>
-                      <li><a href='".$app->urlFor('account')."'>Profil</a></li>
-                      <li><a href='".$app->urlFor('deconnexion')."''>Déconnexion</a></li>
-                    </ul>
-                    ";
-                           } else { echo 
-          					"<a><span class='glyphicon glyphicon-user' aria-hidden='true'></span></a>"."          				
-                    <ul class='dropdown-menu' role='menu'>
-                      <li><a href='".$app->urlFor('connexion')."'>Connexion</a></li>
-                      <li><a href='".$app->urlFor('inscription')."'>Inscription</a></li>
-                    </ul>
-                    ";
-                    } ?>
-                </li>
+                  
+                  <?php  if (isset($_SESSION['id']) && isset($_SESSION['pseudo'])) { ?>
+                  <li><a href='<?php echo $app->urlFor('account'); ?>'><?php echo $_SESSION['pseudo']; ?><span style='margin-left:10px' class='glyphicon glyphicon-user' aria-hidden='true'></span></a></li>
+                   <li><a href='<?php echo $app->urlFor('deconnexion'); ?>'><span class="glyphicon glyphicon-off" aria-hidden='true'></span></a></li>
+                   
+                   <?php } else { ?>
+                   <li><a href='<?php echo $app->urlFor('connexion'); ?>'><span style='margin-left:10px' class='glyphicon glyphicon-user' aria-hidden='true'></span></a></li>
+                  <li><a href='<?php echo $app->urlFor('connexion'); ?>'><span class="glyphicon glyphicon-off" aria-hidden='true'></span></a></li>
+                  <?php }  ?>
+
 				        </ul>
               </div>
             </nav>

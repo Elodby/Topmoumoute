@@ -1,7 +1,7 @@
                
               <div class="col-md-7">
                   <h1><small><?php echo $this->data['top'][0]['to_title']." :"; ?></small></h1>
-                  <h2><small>description du top </small></h2>
+                  <h2><small><?php echo $this->data['top'][0]['to_description'] ;?></small></h2>
                   <h3><small>Soumis par <a href="<?php echo "users-".$this->data['top'][0]['user_id']?>"><?php echo $this->data['top'][0]['pseudo'] ;?></a></small></h3>
               </div>
 
@@ -63,7 +63,7 @@
                             <button class="btn btn-warning" type="submit">Toper</button>
                           </div>
                           <div class="col-md-4">
-                            <button class="btn btn-danger" type="submit">Liker</button>
+                            <button onclick="add_like();" class="btn btn-danger" type="submit">Liker</button>
                           </div>
                           <div class="col-md-4">
                             <button class="btn btn-info" type="submit">Suivre</button>
