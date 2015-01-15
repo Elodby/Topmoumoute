@@ -1,3 +1,6 @@
+<?php if(isset($_SESSION['id'])) $add_like=Top::like($this->data['top'][0]['top_id'], $_SESSION['id']); ?>
+<?php if(isset($_SESSION['id']) && isset($this->data['resUser']['id']) && $_SESSION['id']!=$this->data['resUser']['id']) 
+	$add_follow=User::follow($this->data['resUser']['id'], $_SESSION['id']); else $add_follow="#";?>
 <div class="media">
   <div class="media-body">
 		<?php
@@ -39,11 +42,11 @@
 			            $pseudo=$res['pseudo']; $id=$res['id']; ?>
 
 			            <div class="col-md-4" style="width:250px; height:200px;">
-			            	<a href='<?php echo "tops-".$id ?>'>
+			            	<a href='<?php echo "users-".$id ?>'>
 								<div class="thumbnail" >
 								  <div class="caption" >
 									<h3><?php echo $pseudo ?></h3>
-									<p><a href="#" class="btn btn-info" role="button">Suivre </a></p>
+									<p><a href="<?php echo $add_follow ?>"><button class="btn btn-info" type="submit">Suivre</button></a></p>
 								  </div>
 								</div>
 							</a>

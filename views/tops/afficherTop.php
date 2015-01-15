@@ -1,4 +1,6 @@
               <?php if(isset($_SESSION['id'])) $add_like=Top::like($this->data['top'][0]['top_id'], $_SESSION['id']); ?>
+              <?php if(isset($_SESSION['id']) && isset($this->data['top'][0]['user_id']) && $_SESSION['id']!=$this->data['top'][0]['user_id']) 
+              $add_follow=User::follow($this->data['top'][0]['user_id'], $_SESSION['id']); else $add_follow="#";?>
               <div class="col-md-7">
                   <h1><small><?php echo $this->data['top'][0]['to_title']." :"; ?></small></h1>
                   <h2><small><?php echo $this->data['top'][0]['to_description'] ;?></small></h2>
@@ -59,10 +61,10 @@
                             <button class="btn btn-warning" type="submit">Toper</button>
                           </div>
                           <div class="col-md-4">
-                            <a href="<?php echo $add_like ?>"><button id="liker" class="btn btn-danger" type="submit">Liker</button></a>
+                            <a href="<?php echo $add_like ?>"><button class="btn btn-danger" type="submit">Liker</button></a>
                           </div>
                           <div class="col-md-4">
-                            <button class="btn btn-info" type="submit">Suivre</button>
+                            <a href="<?php echo $add_follow ?>"><button class="btn btn-info" type="submit">Suivre</button></a>
                           </div>
                         </div>
                         <?php } else {?>

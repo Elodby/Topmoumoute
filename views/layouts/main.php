@@ -44,7 +44,7 @@
 
                   <?php  if (isset($_SESSION['id']) && isset($_SESSION['pseudo'])) { ?>
                   <li><a href='<?php echo $app->urlFor('account'); ?>'><?php echo $_SESSION['pseudo']; ?><span style='margin-left:10px' class='glyphicon glyphicon-user' aria-hidden='true'></span></a></li>
-                   <li><a href='<?php echo $app->urlFor('deconnexion'); ?>'><span class="glyphicon glyphicon-off" aria-hidden='true'></span></a></li>
+                   <li><a href='<?php echo $app->urlFor('deconnexion'); ?>'><span class="glyphicon glyphicon-off" aria-hidden='true'></span></a></li><!--<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-off" aria-hidden="true"></span></button>-->
                    
                    <?php } else { ?>
                    <li><a href='<?php echo $app->urlFor('connexion'); ?>'><span style='margin-left:10px' class='glyphicon glyphicon-user' aria-hidden='true'></span></a></li>

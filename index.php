@@ -63,9 +63,11 @@ session_start();
   // GET /users-:user_id
   $app->get('/users-:user_id', function ($id) use ($app) {
     $user = User::getUser($id);
+    $nbrTops = User::count_top($id);
+    $followers=User::get_followers($id);
     $app->render(
       'users/show.php', 
-      array("user" => $user)
+      array("user" => $user, "followers"=> $followers, "tops"=> $nbrTops)
     );
   })->name('user');
   
@@ -75,9 +77,12 @@ session_start();
   if(isset($_POST['mail']) AND $_POST['mail']!="" AND isset($_POST['password']) AND $_POST['password']!="" AND $_POST['password']==$_POST['password2']) 
     User::updateUser($_POST);
     $user = User::getUser($_POST['id']);
+    $followers=User::get_followers($id);
+    $nbrTops = User::count_top($id);
+    $app->flashNow('success',"Votre profil a bien été mis à jour !");
     $app->render(
-      'users/show.php', 
-      array("user" => $user)
+      'users/profil.php', 
+      array("user" => $user, "followers"=> $followers, "tops"=> $nbrTops)
     );
   })->name('user_update');
   
@@ -94,28 +99,24 @@ session_start();
   //GET /account
   $app->get('/account', function () use ($app) {
     $user = User::getUser($_SESSION['id']);
-    $app->render(
-      'users/show.php',
-     array("user" => $user)
-    );
-  })->name('account');
-
-  $app->get('/update', function () use ($app) {
-    $user = User::getUser($_SESSION['id']);
+    $nbrTops = User::count_top($_SESSION['id']);
+    $followers=User::get_followers($_SESSION['id']);
     $app->render(
       'users/profil.php',
-     array("user" => $user)
+     array("user" => $user, "followers"=> $followers, "tops"=> $nbrTops)
     );
-  })->name('update_account');
+  })->name('account');
   
   //post /account
   $app->post('/account', function () use ($app) {
     $id = User::inscription($_POST['pseudo'],$_POST['password'],$_POST['password2'],$_POST['mail']); 
     $user = User::getCurrentUser($id);
+    $nbrTops = User::count_top($id);
+    $followers=User::get_followers($id);
     $app->flashNow('success',"Inscription réussie ! Tu peux maintenant modifier ton profil, créer, suivre et partager des tops !");
     $app->render(
-      'users/show.php',
-     array("user" => $user));
+      'users/profil.php',
+     array("user" => $user, "followers"=> $followers, "tops"=> $nbrTops));
   })->name('account_create');
 
   //GET /connexion
@@ -158,7 +159,7 @@ session_start();
   $app->get('/tops-:top_id', function ($id) use ($app) {
     $top = Top::get_top($id);
     $likes= Top::get_likes($id);
-    $followers= Top::get_followers($id);
+    $followers= User::get_followers($top[0]['user_id']);
     $app->render(
       'tops/afficherTop.php',
       array("top" => $top, "likes" => $likes, "followers" => $followers)
