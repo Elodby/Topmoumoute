@@ -157,9 +157,11 @@ session_start();
   //GET /tops/:top_id
   $app->get('/tops-:top_id', function ($id) use ($app) {
     $top = Top::get_top($id);
+    $likes= Top::get_likes($id);
+    $followers= Top::get_followers($id);
     $app->render(
       'tops/afficherTop.php',
-      array("top" => $top)
+      array("top" => $top, "likes" => $likes, "followers" => $followers)
     );
   });
      //GET /top-add

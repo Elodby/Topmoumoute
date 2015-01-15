@@ -1,4 +1,4 @@
-               
+              <?php if(isset($_SESSION['id'])) $add_like=Top::like($this->data['top'][0]['top_id'], $_SESSION['id']); ?>
               <div class="col-md-7">
                   <h1><small><?php echo $this->data['top'][0]['to_title']." :"; ?></small></h1>
                   <h2><small><?php echo $this->data['top'][0]['to_description'] ;?></small></h2>
@@ -15,19 +15,15 @@
                         </div>
                     </div>
                 </div>
-                  <!--
+                <!---->
                 <div class="row">
-                  <div class="col-md-4">
-                    <button class="btn btn-warning" type="submit">Toper</button>
-                  </div>
-                  <div class="col-md-4">
-                    <button class="btn btn-danger" type="submit">Liker</button>
-                  </div>
-                  <div class="col-md-4">
-                    <button class="btn btn-info" type="submit">Suivre</button>
-                  </div>
+                  <div class="col-md-2"></div>
+                  <div class="col-md-2">
+                    <div class="list-group" style="margin-top:15px;">
+                      <a href="#" class="list-group-item list-group-item-info"><?php echo $this->data['likes']['nbr']." likes" ;?></a>
+                      <a href="#" class="list-group-item list-group-item-danger"><?php echo $this->data['followers']['nbr']." followers" ;?></a>
+                    </div>
                 </div>
-              -->
                 <div class="row">
                   <div class="col-md-7">
                     <div class="thumbnail">
@@ -56,18 +52,32 @@
                       </ul>
                     </div>
                     </div>
-                    <?php }} ?>
+                    <?php }} if(isset($_SESSION['id'])) {?>
 
                         <div class="row">
                           <div class="col-md-4">
                             <button class="btn btn-warning" type="submit">Toper</button>
                           </div>
                           <div class="col-md-4">
-                            <button onclick="add_like();" class="btn btn-danger" type="submit">Liker</button>
+                            <a href="<?php echo $add_like ?>"><button id="liker" class="btn btn-danger" type="submit">Liker</button></a>
                           </div>
                           <div class="col-md-4">
                             <button class="btn btn-info" type="submit">Suivre</button>
                           </div>
                         </div>
+                        <?php } else {?>
+
+                        <div class="row">
+                          <div class="col-md-4">
+                            <a href="<?php echo $app->urlFor('connexion'); ?>"><button class="btn btn-warning" type="submit">Toper</button></a>
+                          </div>
+                          <div class="col-md-4">
+                            <a href="<?php echo $app->urlFor('connexion'); ?>"><button id="liker" class="btn btn-danger" type="submit">Liker</button></a>
+                          </div>
+                          <div class="col-md-4">
+                            <a href="<?php echo $app->urlFor('connexion'); ?>"><button class="btn btn-info" type="submit">Suivre</button></a>
+                          </div>
+                        </div>
+                        <?php } ?>
                   </div>
                 </div>

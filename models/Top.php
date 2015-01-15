@@ -93,5 +93,44 @@ class Top
         
         return $tops;
     }
+
+    static function get_likes($id){
+        global $bdd;
+        
+        $requete = $bdd->prepare("SELECT COUNT(DISTINCT user_id) AS nbr FROM likes WHERE top_id=:id");
+          // l'execution 
+        $requete->bindParam(':id', $id);
+        $requete->execute();
+          $likes = $requete->fetch();
+        
+        return $likes;
+    }
+
+    static function get_followers($id){
+        global $bdd;
+        
+        $requete = $bdd->prepare("SELECT COUNT(DISTINCT follower_id) AS nbr FROM followers WHERE user_id=:id");
+          // l'execution 
+        $requete->bindParam(':id', $id);
+        $requete->execute();
+          $followers = $requete->fetch();
+        
+        return $followers;
+    }
+
+    static function like($top_id, $user_id){
+        global $bdd;
+        
+        $requete = $bdd->prepare("INSERT INTO likes (user_id,top_id) VALUES(:user_id,:top_id)");
+          // l'execution 
+        $requete->bindParam(':user_id', $user_id);
+        $requete->bindParam(':top_id', $top_id);
+
+        $requete->execute();
+    }
+
+    static function check_like($top_id, $user_id){
+        //vérifier si l'utilisateur connecté a déjà liker ce top
+    }
 }
 ?>

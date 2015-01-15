@@ -1,17 +1,15 @@
 <div class="row">
 	<div class="col-md-12">
 		<div class="page-header">
-		<?php  if (isset($_SESSION['id']) && isset($_SESSION['pseudo'])) { ?>
 			<div class="row">
 			  <div class="col-md-4"></div>
-			  <div style="text-align:center;" class="col-md-4"><a href="<?php echo $app->urlFor('top-add'); ?>"><button class="btn btn-danger"><h4>Créer mon top !<h4/></button></a></div>
+			  <div style="text-align:center;" class="col-md-4"><a href="<?php if (isset($_SESSION['id']) && isset($_SESSION['pseudo'])) echo $app->urlFor('top-add'); else echo $app->urlFor('connexion');  ?>"><button class="btn btn-danger"><h4>Créer mon top !<h4/></button></a></div>
 			  <div class="col-md-4"></div>
 			</div>
-		<?php }  ?>
 		  <h1><small>Les meilleurs tops :</small></h1>
 		</div>
 		<div class="row">
-			<?php foreach ($this->data['tops'] as $top): ?>
+		<?php foreach ($this->data['tops'] as $top): ?>
 		  <div class="col-md-3">
 		   <a href='<?php echo "tops-".$top['id']?>'>
 			<div class="thumbnail">
@@ -63,7 +61,7 @@
 		  </div>
 		</div>-->
 
-					<div class="row">
+		<div class="row">
 		  <div class="col-md-12">
 			<div class="page-header">
 			  <h1><small>Les derniers tops :</small></h1>
