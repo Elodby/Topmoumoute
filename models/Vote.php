@@ -1,8 +1,5 @@
 <?php
 
-/**
-* 
-*/
 class Vote
 {
 	static function add_vote($emplacement, $user_id, $element_id, $top_id){
