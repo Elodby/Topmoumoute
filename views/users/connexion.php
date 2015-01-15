@@ -29,6 +29,12 @@
     <button id="submit" name="submit" class="btn btn-primary">Connexion</button>
   </div>
 </div>
-
 </fieldset>
 </form>
+  <label class="col-md-4 control-label" for="submit"></label>
+  <a href="<?php echo $app->urlFor('inscription') ?>"><button id="inscription" name="inscription" class="btn btn-warning" style="margin-left:10px;">Inscription</button></a>
+<div class="row">
+  <div class="col-md-4">
+    
+   </div> 
+ </div> 
