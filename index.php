@@ -157,9 +157,11 @@ session_start();
   //GET /tops/:top_id
   $app->get('/tops-:top_id', function ($id) use ($app) {
     $top = Top::get_top($id);
+    $likes= Top::get_likes($id);
+    $followers= Top::get_followers($id);
     $app->render(
       'tops/afficherTop.php',
-      array("top" => $top)
+      array("top" => $top, "likes" => $likes, "followers" => $followers)
     );
   });
      //GET /top-add
@@ -217,11 +219,13 @@ session_start();
   })->name('search');
 
   $app->post('/search', function () use ($app) {
-    //$resTop = Top::search($_POST['mot']);
+    $resTop = Top::search($_POST['mot']);
     $resUser = User::search($_POST['mot']);
+    if($resTop==null && $resUser==null)
+      $app->flashNow('error',"Aucun résultat n'a été obtenu pour cette recherche");
     $app->render(
       'tops/search.php',
-      array("resUser" => $resUser)
+      array("resTop" => $resTop, "resUser" => $resUser)
     );
   })->name('post_search');
   

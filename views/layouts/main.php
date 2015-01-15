@@ -32,12 +32,14 @@
                 <ul class="nav navbar-nav">
                   
                 </ul>
-                <form class="navbar-form navbar-left" role="search">
-                  <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search">
-                  </div>
-                  <button type="submit" class="btn btn-default">Submit</button>
+
+                <form method="post" action="<?php echo $app->urlFor('post_search');?>" class="navbar-form navbar-left" role="search">
+                    <div class="form-group">
+                        <input type="text" name="mot" class="form-control" placeholder="Rechercher">
+                    </div>
+                    <button type="submit" class="btn btn-default">Rechercher</button>
                 </form>
+                
                 <ul class="nav navbar-nav navbar-right">
 
                   <?php  if (isset($_SESSION['id']) && isset($_SESSION['pseudo'])) { ?>
