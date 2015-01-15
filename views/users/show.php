@@ -11,4 +11,4 @@
   </div>
 </div>
 
-<a href="<?php echo $app->urlFor('account') ?>">Modifier</a>
+<a href="<?php echo $app->urlFor('update_account') ?>"><button class="btn btn-primary">Mettre à jour mon profil</button></a>
