@@ -209,12 +209,22 @@ session_start();
   })->name('top_creat');
      
 
-   //GET /tops/search
-	$app->get('/tops-search', function () use ($app) {
+  //GET /tops/search
+  $app->get('/search', function () use ($app) {
     $app->render(
-      'tops/search.php' 
+      'tops/search.php'
     );
-  });
+  })->name('search');
+
+  $app->post('/search', function () use ($app) {
+    //$resTop = Top::search($_POST['mot']);
+    $resUser = User::search($_POST['mot']);
+    $app->render(
+      'tops/search.php',
+      array("resUser" => $resUser)
+    );
+  })->name('post_search');
+  
   
   
   // always need to be at the bottom of this file !

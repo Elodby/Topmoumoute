@@ -93,11 +93,20 @@ class Top
         
         return $tops;
     }
-/*
-    static function search(){
+
+    static function search($mot){
         global $bdd;
 
-        $req = $bdd->prepare("SELECT * FROM tops WHERE nom_fonction LIKE '%mysql%' ORDER BY nom_fonction")
-    }*/
+        if(isset($mot) && $mot != "") // on vérifie d'abord l'existence du POST.
+        {
+            
+
+            $req = $bdd->prepare("SELECT * FROM tops WHERE title LIKE '%$mot%' OR description LIKE '%$mot%'");
+            $req->execute();
+            $resultat = $req->fetchAll();
+
+            return $resultat;
+         }
+    }
 }
 ?>

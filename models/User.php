@@ -108,5 +108,18 @@
 			}
 		  
 	}
+
+	static function search($mot){
+        global $bdd;
+
+        if(isset($mot) && $mot != "") // on vérifie d'abord l'existence du POST.
+        {
+            $req = $bdd->prepare("SELECT * FROM users WHERE pseudo LIKE '%$mot%'");
+            $req->execute();
+            $resultat = $req->fetchAll();
+
+            return $resultat;
+         }
+    }
   }
 ?>
