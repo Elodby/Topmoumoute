@@ -10,7 +10,7 @@
 		</div>
 		<div class="row">
 		<?php foreach ($this->data['tops'] as $top): ?>
-		  <div class="col-md-3">
+		  <div class="col-md-3" >
 		   <a href='<?php echo "tops-".$top['id']?>'>
 			<div class="thumbnail">
 			  <img src="<?php echo $top['image_url'] ?>" width="300px" alt="">
@@ -141,9 +141,6 @@
 			</div>
 		  </div>
 		</div>
-
-
-
 	  </div>
 	  <div class="col-md-3 col-md-pull-9">
 		<img width="250px" src="pictures/logo_mouton.png" alt="#" class="img-rounded">
