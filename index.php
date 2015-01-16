@@ -196,11 +196,11 @@ session_start();
      //GET /top-add
 	$app->get('/top-add', function () use ($app) {
     if (isset($_SESSION['id']) && isset($_SESSION['pseudo'])) {
-    $categories = Category::get_all_category();
-    $app->render(
-      'tops/top_creation.php',
-      array("categories" => $categories)
-    );
+      $categories = Category::get_all_category();
+      $app->render(
+        'tops/top_creation.php',
+        array("categories" => $categories)
+      );
     }
     else { 
       $app->flashNow('error',"Veuillez vous connecter pour accéder à ce contenu.");
@@ -227,7 +227,7 @@ session_start();
   })->name('creation_elements');
   
 
-    //POST/top-creat
+    
   $app->post('/top-creat', function () use ($app) {
     $element_id[] = Element::add_element($_POST['title'], $_POST['description'] );
     $vote = Vote::add_vote( $_POST['emplacement'], $_SESSION['id'], $element_id, $_POST['top_id'] );
@@ -239,6 +239,40 @@ session_start();
     );
   })->name('top_creat');
      
+
+  $app->get('/retop', function ($id) use ($app) {
+    if (isset($_SESSION['id']) && isset($_SESSION['pseudo'])) {
+      $top = get_top($id)
+      $app->render(
+        'tops/retop.php',
+        array("top" => $top)
+      );
+    }
+    else { 
+      $app->flashNow('error',"Veuillez vous connecter pour accéder à ce contenu.");
+      $app->render(
+      'layouts/blank.php');
+    }
+    });
+/*
+
+    $app->get('/retop-:top_id', function () use ($app) {
+    if (isset($_SESSION['id']) && isset($_SESSION['pseudo'])) {
+      $top_id = Top::retop($title, $description, $category_id, $_SESSION['id']);
+      $top = get_top($id)
+      $app->render(
+        'tops/retop.php',
+        array("top_id" => $top_id)
+      );
+    }
+    else { 
+      $app->flashNow('error',"Veuillez vous connecter pour accéder à ce contenu.");
+      $app->render(
+      'layouts/blank.php');
+    }
+    })->name('retop');
+*/
+
 
   //GET /tops/search
   $app->get('/search', function () use ($app) {
