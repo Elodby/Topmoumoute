@@ -121,5 +121,40 @@
             return $resultat;
          }
     }
+
+    static function follow($user_id, $follower_id){
+        global $bdd;
+        
+        $requete = $bdd->prepare("INSERT INTO followers (user_id,follower_id) VALUES(:user_id,:follower_id)");
+          // l'execution 
+        $requete->bindParam(':user_id', $user_id);
+        $requete->bindParam(':follower_id', $follower_id);
+
+        $requete->execute();
+    }
+
+    static function get_followers($id){
+        global $bdd;
+        
+        $requete = $bdd->prepare("SELECT COUNT(follower_id) AS nbr FROM followers WHERE user_id=:id");
+          // l'execution 
+        $requete->bindParam(':id', $id);
+        $requete->execute();
+          $followers = $requete->fetch();
+        
+        return $followers;
+    }
+
+    static function count_top($id){
+        global $bdd;
+        
+        $requete = $bdd->prepare("SELECT COUNT(user_id) AS nbr FROM tops WHERE user_id=:id");
+          // l'execution 
+        $requete->bindParam(':id', $id);
+        $requete->execute();
+          $topsNbr = $requete->fetch();
+        
+        return $topsNbr;
+    }
   }
 ?>

@@ -124,18 +124,6 @@ class Top
         return $likes;
     }
 
-    static function get_followers($id){
-        global $bdd;
-        
-        $requete = $bdd->prepare("SELECT COUNT(DISTINCT follower_id) AS nbr FROM followers WHERE user_id=:id");
-          // l'execution 
-        $requete->bindParam(':id', $id);
-        $requete->execute();
-          $followers = $requete->fetch();
-        
-        return $followers;
-    }
-
     static function like($top_id, $user_id){
         global $bdd;
         
