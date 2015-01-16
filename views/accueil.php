@@ -83,64 +83,32 @@
 			<?php endforeach; ?>
 			</div>
 			  
-
-		 <div class="row">
-		  <div class="col-md-12">
-			<div class="page-header">
-			  <h1><small>Les tops que vous suivez :</small></h1>
-			</div>
-			<div class="row">
+		<?php if(isset($_SESSION['id']) and $_SESSION['id'] != null){ ?>
+			 <div class="row">
+			  <div class="col-md-12">
+				<div class="page-header">
+				  <h1><small>Les tops que vous suivez :</small></h1>
+				</div>
+				<div class="row">
+				  <?php foreach ($this->data['top_user_follow'] as $top): ?>
 			  <div class="col-md-3">
+			   <a href='<?php echo "tops-".$top['id']?>'>
 				<div class="thumbnail">
-				  <img src="pictures/yop.jpg" width="300px" alt="">
+				  <img src="<?php echo $top['image_url'] ?>" width="300px" alt="">
 				  <div class="caption">
-					<h3>Vos yops favoris :</h3>
-					<p>Eh c'est MON Yop .</p>
-				  </br>
+					<h3><?php echo $top['title'] ?></h3>
+					<p><?php echo $top['description'] ?></p>
 					<p><a href="#" class="btn btn-info" role="button">Toper !</a></p>
 				  </div>
 				</div>
+				</a>
 			  </div>
-
-			   <div class="col-md-3">
-				<div class="thumbnail">
-				  <img src="pictures/parfum.jpg" width="300px" alt="">
-				  <div class="caption">
-					<h3>Votre top Parfum : </h3>
-					<p>Pour sentir bon !</p>
-				  </br>
-					<p><a href="#" class="btn btn-info" role="button">Toper !</a></p>
-				  </div>
+				<?php endforeach; ?>
 				</div>
 			  </div>
-
-			   <div class="col-md-3">
-				<div class="thumbnail">
-				  <img src="pictures/animaux.jpg" width="300px" alt="">
-				  <div class="caption">
-					<h3>Vos animaux préférés :</h3>
-					<p>On en voudrait tous un ..</p>
-				  </br>
-					<p><a href="#" class="btn btn-info" role="button">Toper !</a></p>
-				  </div>
-				</div>
-			  </div>
-
-			   <div class="col-md-3">
-				<div class="thumbnail">
-				  <img src="pictures/cute.jpg" width="300px" alt="">
-				  <div class="caption">
-					<h3>Votre top trucs mignons :</h3>
-					<p>Cuttest <3 </p>
-				  </br>
-					<p><a href="#" class="btn btn-info" role="button">Toper !</a></p>
-				  </div>
-				</div>
-			  </div>
-
 			</div>
-		  </div>
-		</div>
+		<?php } ?>
+		
 	  </div>
 	  <div class="col-md-3 col-md-pull-9">
 		<img width="250px" src="pictures/logo_mouton.png" alt="#" class="img-rounded">

@@ -31,14 +31,16 @@
               </div>
               <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                  
+                  <li><a href="<?php echo $app->urlFor('tops'); ?>">Tous les tops</a></li>
+                    </ul>
+                  </li>
                 </ul>
 
                 <form method="post" action="<?php echo $app->urlFor('post_search');?>" class="navbar-form navbar-left" role="search">
                     <div class="form-group">
                         <input type="text" name="mot" class="form-control" placeholder="Rechercher">
                     </div>
-                    <button type="submit" class="btn btn-default">Rechercher</button>
+                    <button type="submit" class="btn btn-default">Go</button>
                 </form>
                 
                 <ul class="nav navbar-nav navbar-right">
