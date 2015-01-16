@@ -63,6 +63,7 @@ session_start();
   // GET /users-:user_id
   $app->get('/users-:user_id', function ($id) use ($app) {
     $user = User::getUser($id);
+    //$tops = Top::get_top_byUser($id);    , "tops"=>$tops
     $app->render(
       'users/show.php', 
       array("user" => $user)
@@ -118,6 +119,15 @@ session_start();
      array("user" => $user));
   })->name('account_create');
 
+
+  $app->get('/users-:user_id/tops', function ($user_id) use ($app) {
+    $top = Top::get_top_byUser($user_id);
+    $app->render(
+      'users/top-byUser.php',
+     array("top" => $top)
+    );
+  })->name('topUser');
+
   //GET /connexion
   $app->get('/connexion', function () use ($app) {
     $app->render(
@@ -164,6 +174,17 @@ session_start();
       array("top" => $top, "likes" => $likes, "followers" => $followers)
     );
   });
+
+
+  $app->get('/tops-:top_id', function ($user_id) use ($app) {
+    $top = Top::get_top_byUser($user_id);
+    $app->render(
+      'tops/afficherTop.php',
+      array("top" => $top, "likes" => $likes, "followers" => $followers)
+    );
+  });
+
+
      //GET /top-add
 	$app->get('/top-add', function () use ($app) {
     if (isset($_SESSION['id']) && isset($_SESSION['pseudo'])) {
