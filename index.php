@@ -86,6 +86,16 @@ session_start();
     );
   })->name('user_update');
   
+
+  // GET /users-:user_id/tops
+  $app->get('/users-:user_id/tops', function ($id) use ($app) {
+    $tops = Top::get_top_byUser($id);
+    $user = User::getUser($id);
+    $app->render(
+      'users/top-byUser.php', 
+      array("tops" => $tops, "user"=>$user)
+    );
+  });
   
     // GET /users
   $app->get('/users', function() use ($app) {

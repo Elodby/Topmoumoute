@@ -8,7 +8,7 @@
                   <h1><?php echo $this->data['user']['pseudo'] ?></h1>
                   <span class="label label-warning"><?php echo $this->data['followers']['nbr']." Followers" ;?></span>
                   <span class="label label-warning"><?php echo $this->data['tops']['nbr'] ?> Tops publiés</span></br></br>
-                  <button type="submit" class="btn btn-success">Voir ses tops</button>
+                  <a href="users-<?php echo $this->data['user']['id'] ?>/tops"><button type="submit" class="btn btn-success">Voir ses tops</button>
                   <a href="<?php echo $add_follow ?>"><button class="btn btn-success" type="submit">Suivre</button></a>
             </div>
             <div class="row">

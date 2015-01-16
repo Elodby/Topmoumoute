@@ -26,7 +26,7 @@ class Top
         global $bdd;
         //$requete = $bdd->prepare("SELECT tops.title 'to_title', elements.title 'el_title', users.pseudo, elements.description
 
-        $requete = $bdd->prepare("SELECT tops.id 'top_id', tops.title 'to_title', tops.description 'to_description', elements.title 'el_title', users.pseudo, users.id 'user_id', elements.description
+        $requete = $bdd->prepare("SELECT tops.id 'top_id', tops.title 'to_title', tops.description 'to_description', tops.date, elements.title 'el_title', users.pseudo, users.id 'user_id', elements.description
                                     FROM tops
                                     LEFT JOIN votes ON tops.id = votes.top_id
                                     LEFT JOIN elements ON votes.element_id = elements.id
@@ -40,6 +40,28 @@ class Top
         
         return $top;
     }
+
+
+
+    static function get_top_byUser($user_id){
+        global $bdd;
+        
+        $requete = $bdd->prepare("SELECT tops.id, tops.title, tops.description, tops.user_id, el.image_url, users.pseudo
+                                    FROM tops
+                                    LEFT JOIN votes ON tops.id = votes.top_id
+                                    LEFT JOIN elements el ON votes.element_id = el.id
+                                    LEFT JOIN users ON tops.user_id = users.id
+                                    WHERE tops.user_id = :user_id
+                                    AND votes.emplacement = 1
+                                    ORDER BY tops.id");
+          // l'execution 
+        $requete->bindParam(':user_id', $user_id);
+        $requete->execute();
+          $tops = $requete->fetchAll();
+        
+        return $tops;
+    }
+
 
     static function add_top($title, $description, $category_id, $user_id){
     	global $bdd;
