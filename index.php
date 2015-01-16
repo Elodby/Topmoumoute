@@ -32,11 +32,18 @@ session_start();
   $app->get('/', function() use ($app) {
     $tops = Top::get_best_tops();
 	$last_tops = Top::get_last_tops();
+  if(isset($_SESSION['id'])){
+    $top_user_follow = Top::get_tops_follows($_SESSION['id']);
     $app->render( 
       'accueil.php', 
-      array("tops" => $tops, "last_tops" => $last_tops
-      ) 
+      array("tops" => $tops, "last_tops" => $last_tops, "top_user_follow"=>$top_user_follow) 
     );
+  }else{
+    $app->render( 
+      'accueil.php', 
+      array("tops" => $tops, "last_tops" => $last_tops) 
+    );
+  }
   })->name('root'); // named route so I can use with "urlFor" method
 
   //POST /root connexion
@@ -45,10 +52,11 @@ session_start();
     if($_SESSION['id']!=false){
     	$tops = Top::get_best_tops();
     	$last_tops = Top::get_last_tops();
+      $top_user_follow = Top::get_tops_follows($_SESSION['id']);
       $app->flashNow('success', 'Connexion réussie !');
         $app->render(
           'accueil.php',
-    		array("tops" => $tops, "last_tops" => $last_tops));
+    		array("tops" => $tops, "last_tops" => $last_tops, "top_user_follow"=>$top_user_follow));
     }
     else {
       $app->flashNow('error', 'Erreur lors de la connexion, veuillez vérifier votre pseudo et votre mot de passe');
@@ -159,9 +167,10 @@ session_start();
    //GET /tops
   $app->get('/tops', function () use ($app) {
     $tops = Top::get_all_top();
+    $categories = Category::get_all_category();
     $app->render(
       'tops/show_all.php',  
-      array("tops" => $tops) 
+      array("tops" => $tops, "categories"=>$categories) 
     );
   })->name('tops');
 
@@ -175,6 +184,15 @@ session_start();
       array("top" => $top, "likes" => $likes, "followers" => $followers)
     );
   });
+
+  $app->get('/tops/category-:cat_id', function ($cat_id) use ($app) {
+    $tops = Top::get_top_byCategory($cat_id);
+    $app->render(
+      'tops/top_byCategory.php',  
+      array("tops" => $tops) 
+    );
+  });
+
      //GET /top-add
 	$app->get('/top-add', function () use ($app) {
     if (isset($_SESSION['id']) && isset($_SESSION['pseudo'])) {

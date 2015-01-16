@@ -62,6 +62,24 @@ class Top
         return $tops;
     }
 
+    static function get_top_byCategory($cat_id){
+        global $bdd;
+        
+        $requete = $bdd->prepare("SELECT tops.id, tops.title, tops.description, el.image_url, tops.category_id
+                                    FROM tops
+                                    LEFT JOIN votes ON tops.id = votes.top_id
+                                    LEFT JOIN elements el ON votes.element_id = el.id
+                                    WHERE tops.category_id = :cat_id
+                                    AND votes.emplacement = 1
+                                    ORDER BY tops.id");
+          // l'execution 
+        $requete->bindParam(':cat_id', $cat_id);
+        $requete->execute();
+          $tops = $requete->fetchAll();
+        
+        return $tops;
+    }
+
 
     static function add_top($title, $description, $category_id, $user_id){
     	global $bdd;
@@ -101,15 +119,36 @@ class Top
 	static function get_best_tops(){
         global $bdd;
         
-        $requete = $bdd->prepare("SELECT tops.id, tops.title, tops.description, tops.date, tops.category_id, tops.user_id, tops.source_id, el.image_url 
-									FROM tops
-									LEFT JOIN votes 
-									ON tops.id = votes.top_id
-									LEFT JOIN elements el
-									ON votes.element_id = el.id
-									WHERE votes.emplacement = 1
+        $requete = $bdd->prepare("SELECT tops.id, tops.title, tops.description, el.image_url, COUNT(DISTINCT likes.user_id) 'nbLike'
+                                    FROM likes
+                                    LEFT JOIN tops ON tops.id = top_id
+                                    LEFT JOIN votes  ON tops.id = votes.top_id
+                                    LEFT JOIN elements el ON votes.element_id = el.id
+                                    WHERE votes.emplacement = 1
+                                    GROUP BY likes.top_id 
+                                    ORDER BY nbLike DESC
 									LIMIT 4");
           // l'execution 
+        $requete->execute();
+        $tops = $requete->fetchAll();
+        
+        return $tops;
+    }
+
+    static function get_tops_follows($user_id){
+        global $bdd;
+        
+        $requete = $bdd->prepare("SELECT tops.id, tops.title, tops.description, el.image_url
+                                    FROM tops
+                                    LEFT JOIN votes  ON tops.id = votes.top_id
+                                    LEFT JOIN elements el ON votes.element_id = el.id
+                                    LEFT JOIN followers ON tops.user_id = followers.user_id
+                                    WHERE votes.emplacement = 1
+                                    AND follower_id = :user_id
+                                    ORDER BY tops.date
+                                    LIMIT 4");
+          // l'execution 
+        $requete->bindParam(':user_id', $user_id);
         $requete->execute();
           $tops = $requete->fetchAll();
         

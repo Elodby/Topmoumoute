@@ -2,19 +2,9 @@
   <div class="media-body">
 
     <div class="page-header">
-		<h1><small>Tous les tops :</small></h1>
+		<h1><small>Top par categories :</small></h1>
 	</div>
-
-	<h3><small>Trier par:</small></h3>
-	 <ul>
-	    <div class="row">
-			<?php foreach ($this->data['categories'] as $category): ?>
-			  <div class="col-md-3" >
-				<li><a href="tops/category-<?php echo $category['cat_id'] ?>"> <?php echo $category['cat_title'] ?> </a></li>
-			  </div>
-			<?php endforeach; ?>
-		</div>
-  	</ul>
+	
 
 	<div class="row">
 		<?php foreach ($this->data['tops'] as $top): ?>
@@ -32,5 +22,7 @@
 		  </div>
 		<?php endforeach; ?>
 	</div>
+
+	
   </div>
 </div>

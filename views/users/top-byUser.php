@@ -24,5 +24,3 @@
   	
   </div>
 </div>
-
-<a href="<?php echo $app->urlFor('root')  ?>">< Back</a>
