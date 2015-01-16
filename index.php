@@ -1,5 +1,4 @@
-<?php
-session_start();
+<?php session_start();
 //$_SESSION['id']=1;
   // require composer autoload (load all my libraries)
   require 'vendor/autoload.php';
@@ -31,7 +30,7 @@ session_start();
   // GET /
   $app->get('/', function() use ($app) {
     $tops = Top::get_best_tops();
-	$last_tops = Top::get_last_tops();
+	 $last_tops = Top::get_last_tops();
     $app->render( 
       'accueil.php', 
       array("tops" => $tops, "last_tops" => $last_tops
@@ -74,11 +73,13 @@ session_start();
   //POST /users-:user_id
   $app->post('/update_user', function () use ($app) {
   // Si le formulaire est rempli
-  if(isset($_POST['mail']) AND $_POST['mail']!="" AND isset($_POST['password']) AND $_POST['password']!="" AND $_POST['password']==$_POST['password2']) 
-    User::updateUser($_POST);
+    if(isset($_POST['mail']) AND $_POST['mail']!="" AND isset($_POST['password']) AND $_POST['password']!="" AND $_POST['password']==$_POST['password2']) 
+      User::updateUser($_POST);
+    if($_FILES['avatar']!=null)
+      User::upload_image();
     $user = User::getUser($_POST['id']);
-    $followers=User::get_followers($id);
-    $nbrTops = User::count_top($id);
+    $followers=User::get_followers($_POST['id']);
+    $nbrTops = User::count_top($_POST['id']);
     $app->flashNow('success',"Votre profil a bien été mis à jour !");
     $app->render(
       'users/profil.php', 
@@ -230,7 +231,11 @@ session_start();
     );
   })->name('post_search');
   
-  
-  
+  /*
+  $app->get('/image', function () use ($app) { 
+    $app->contentType('image/jpg'); 
+     $app->render('square_image.php');
+  });*/
+
   // always need to be at the bottom of this file !
   $app->run();

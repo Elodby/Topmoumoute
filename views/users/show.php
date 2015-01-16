@@ -13,7 +13,7 @@
             </div>
             <div class="row">
               <div class="col-md-4">
-                <img src="<?php echo $this->data['user']['avatar_url'] ?>" width="200px" class="img-circle">
+                <img src="<?php if($this->data['user']['avatar_url']!=null) echo "./uploadedfiles/".$this->data['user']['avatar_url'] ?>" width="200px" class="img-circle">
               </div>
               <div class="col-md-6">
                 <p class="bg-info">Informations :</p>
