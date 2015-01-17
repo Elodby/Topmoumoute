@@ -197,11 +197,11 @@
      //GET /top-add
 	$app->get('/top-add', function () use ($app) {
     if (isset($_SESSION['id']) && isset($_SESSION['pseudo'])) {
-    $categories = Category::get_all_category();
-    $app->render(
-      'tops/top_creation.php',
-      array("categories" => $categories)
-    );
+      $categories = Category::get_all_category();
+      $app->render(
+        'tops/top_creation.php',
+        array("categories" => $categories)
+      );
     }
     else { 
       $app->flashNow('error',"Veuillez vous connecter pour accéder à ce contenu.");
@@ -228,6 +228,7 @@
   })->name('creation_elements');
   
 
+
     //POST/top-creat
   $app->post('/my-new-top', function () use ($app) {
     $element_id[] = Element::add_element($_POST['title'], $_POST['description'] );
@@ -244,6 +245,25 @@
     );
   })->name('top_creat');
      
+
+  $app->get('/retop-:top_id', function ($id) use ($app) {
+      $top = Top::get_top($id);
+      $app->render(
+        'tops/retop.php',
+        array("top" => $top)
+      );
+    });
+
+
+    $app->post('/retop/elements', function () use ($app) {
+      $tops = Top::add_top($_POST['title'], $_POST['description'], $_POST['category'], $_SESSION['id'], $_POST['source_id']);
+      $app->render(
+        'tops/retop-element.php',
+        array("top_id" => $tops)
+      );  
+    });
+
+
 
   //GET /tops/search
   $app->get('/search', function () use ($app) {

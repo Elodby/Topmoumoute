@@ -25,7 +25,7 @@
 			  <div class="caption">
 				<h3><?php echo $top['title'] ?></h3>
 				<p><?php echo $top['description'] ?></p>
-				<p><a href="#" class="btn btn-info" role="button">Toper !</a></p>
+				<p><a href="retop-<?php echo $top['id']; ?>" class="btn btn-info" role="button">Toper !</a></p>
 			  </div>
 			</div>
 			</a>

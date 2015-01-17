@@ -6,7 +6,7 @@
                   <h1><?php echo $this->data['user']['pseudo'] ?></h1>
                   <span class="label label-warning"><?php echo $this->data['followers']['nbr']." Followers" ;?></span>
                   <span class="label label-warning"><?php echo $this->data['tops']['nbr'] ?> Tops publiés</span></br></br>
-                  <button type="submit" class="btn btn-success">Voir mes tops</button>
+                  <a href="users-<?php echo $this->data['user']['id'] ?>/tops"><button type="submit" class="btn btn-success">Voir mes tops</button></a>
             </div>
             <div class="row">
               <div class="col-md-5">

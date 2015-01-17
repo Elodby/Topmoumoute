@@ -79,23 +79,6 @@ class Top
         
         return $tops;
     }
-
-
-    static function add_top($title, $description, $category_id, $user_id){
-    	global $bdd;
-        
-        $req = $bdd->prepare("INSERT INTO tops (title, description, date, category_id, user_id) VALUES (:title, :description, CURDATE(), :category_id, :user_id)");
-        
-
-        $req->execute(array(
-            'title'=>$title,
-            'description' => $description,
-            'category_id'=>$category_id,
-            'user_id' => $user_id
-        ));
-    
-        return $bdd->lastInsertId();
-    }
 	
 	static function get_last_tops(){
         global $bdd;
@@ -155,7 +138,6 @@ class Top
         return $tops;
     }
 
-
     static function get_likes($id){
         global $bdd;
         
@@ -197,6 +179,40 @@ class Top
 
             return $resultat;
          }
+    }
+
+    static function add_top($title, $description, $category_id, $user_id){
+        global $bdd;
+        
+        $req = $bdd->prepare("INSERT INTO tops (title, description, date, category_id, user_id) VALUES (:title, :description, CURDATE(), :category_id, :user_id)");
+        
+
+        $req->execute(array(
+            'title'=>$title,
+            'description' => $description,
+            'category_id'=>$category_id,
+            'user_id' => $user_id
+        ));
+    
+        return $bdd->lastInsertId();
+    }
+
+    static function top_retop($title, $description, $category_id, $user_id, $source_id){
+        global $bdd;
+        
+        $req = $bdd->prepare("INSERT INTO tops (title, description, date, category_id, user_id, source_id) 
+                                VALUES (:title, :description, CURDATE(), :category_id, :user_id, :source_id)");
+        
+
+        $req->execute(array(
+            'title'=>$title,
+            'description' => $description,
+            'category_id'=>$category_id,
+            'user_id' => $user_id,
+            'source_id' => $source_id
+        ));
+    
+        return $bdd->lastInsertId();
     }
 }
 ?>
