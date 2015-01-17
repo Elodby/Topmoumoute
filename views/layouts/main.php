@@ -9,9 +9,10 @@
 		<script src="<?php echo $app->urlFor('root')?>bootstrap/js/bootstrap.min.js"></script>
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="<?php echo $app->urlFor('root')?>lightbox/js/lightbox.min.js"></script>
     <script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script>
     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-
+    <link href="<?php echo $app->urlFor('root')?>lightbox/css/lightbox.css" rel="stylesheet" />
 		<meta charset="utf-8" />
   </head>
   <body>

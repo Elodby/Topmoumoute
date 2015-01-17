@@ -30,7 +30,9 @@ $add_follow=User::follow($this->data['top'][0]['user_id'], $_SESSION['id']); els
 <div class="row">
   <div class="col-md-7">
     <div class="thumbnail">
+      <a href="<?php echo './uploadedfiles/'.$this->data['top'][0]['el_image']; ?>" data-lightbox="images">
       <img src="<?php echo './uploadedfiles/'.$this->data['top'][0]['el_image']; ?>" width="470px" alt="">
+    </a>
       <div class="caption">
         <h3><?php echo $this->data['top'][0]['el_title'] ;?></h3>
         <p><?php echo $this->data['top'][0]['description'] ;?></p>
@@ -44,7 +46,7 @@ $add_follow=User::follow($this->data['top'][0]['user_id'], $_SESSION['id']); els
       <div class="thumbnail">
       <ul class="media-list">
         <li class="media">
-          <a class="media-left" href="#">
+          <a class="media-left" href="<?php echo './uploadedfiles/'.$value['el_image']; ?>" data-lightbox="images">
             <img src="<?php echo './uploadedfiles/'.$value['el_image']; ?>" width="90px">
           </a>
           <div class="media-body">
