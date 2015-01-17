@@ -1,13 +1,14 @@
+<p class="lead bg-info text-center" style="padding:2px; color:#333; border-radius:2px;"><small>Le site de partage de classements,<br> exprime tes préférences sur toutes sortes de sujet en créant des tops 5 !</small></p>
 <div class="row">
 	<div class="col-md-12">
-		<div class="page-header">
 			<div class="row">
 			  <div class="col-md-4"></div>
 			  <div style="text-align:center;" class="col-md-4"><a href="<?php if (isset($_SESSION['id']) && isset($_SESSION['pseudo'])) echo $app->urlFor('top-add'); else echo $app->urlFor('connexion');  ?>"><button class="btn btn-danger"><h4>Créer mon top !<h4/></button></a></div>
 			  <div class="col-md-4"></div>
 			</div>
+			<div class="page-header">
 		  <h1><small>Les meilleurs tops :</small></h1>
-		</div>
+			</div>
 		<div class="row">
 		<?php foreach ($this->data['tops'] as $top): ?>
 		  <div class="col-md-3" >
