@@ -196,22 +196,23 @@ class Top
     
         return $bdd->lastInsertId();
     }
-/*
-    static function retop($title, $description, $category_id, $user_id){
+
+    static function top_retop($title, $description, $category_id, $user_id, $source_id){
         global $bdd;
         
-        $req = $bdd->prepare("INSERT INTO tops (title, description, date, category_id, user_id) 
-                                VALUES (:title, :description, CURDATE(), :category_id, :user_id)");
+        $req = $bdd->prepare("INSERT INTO tops (title, description, date, category_id, user_id, source_id) 
+                                VALUES (:title, :description, CURDATE(), :category_id, :user_id, :source_id)");
         
 
         $req->execute(array(
             'title'=>$title,
             'description' => $description,
             'category_id'=>$category_id,
-            'user_id' => $user_id
+            'user_id' => $user_id,
+            'source_id' => $source_id
         ));
     
         return $bdd->lastInsertId();
-    }*/
+    }
 }
 ?>

@@ -241,38 +241,23 @@
   })->name('top_creat');
      
 
-  $app->get('/retop', function ($id) use ($app) {
-    if (isset($_SESSION['id']) && isset($_SESSION['pseudo'])) {
-      $top = get_top($id)
+  $app->get('/retop-:top_id', function ($id) use ($app) {
+      $top = Top::get_top($id);
       $app->render(
         'tops/retop.php',
         array("top" => $top)
       );
-    }
-    else { 
-      $app->flashNow('error',"Veuillez vous connecter pour accéder à ce contenu.");
-      $app->render(
-      'layouts/blank.php');
-    }
     });
-/*
 
-    $app->get('/retop-:top_id', function () use ($app) {
-    if (isset($_SESSION['id']) && isset($_SESSION['pseudo'])) {
-      $top_id = Top::retop($title, $description, $category_id, $_SESSION['id']);
-      $top = get_top($id)
+
+    $app->post('/retop/elements', function () use ($app) {
+      $tops = Top::add_top($_POST['title'], $_POST['description'], $_POST['category'], $_SESSION['id'], $_POST['source_id']);
       $app->render(
-        'tops/retop.php',
-        array("top_id" => $top_id)
-      );
-    }
-    else { 
-      $app->flashNow('error',"Veuillez vous connecter pour accéder à ce contenu.");
-      $app->render(
-      'layouts/blank.php');
-    }
-    })->name('retop');
-*/
+        'tops/retop-element.php',
+        array("top_id" => $tops)
+      );  
+    });
+
 
 
   //GET /tops/search
