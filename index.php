@@ -188,9 +188,10 @@
 
   $app->get('/tops/category-:cat_id', function ($cat_id) use ($app) {
     $tops = Top::get_top_byCategory($cat_id);
+    $categories = Category::get_all_category();
     $app->render(
       'tops/top_byCategory.php',  
-      array("tops" => $tops) 
+      array("tops" => $tops, "categories"=>$categories) 
     );
   });
 
