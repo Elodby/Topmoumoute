@@ -7,7 +7,7 @@
   	<div class="row">
 		<?php foreach ($this->data['tops'] as $top): ?>
 		  <div class="col-md-3" >
-		   <a href='<?php echo "tops-".$top['id']?>'>
+		   <a href='<?php echo "../tops-".$top['id']?>'>
 			<div class="thumbnail">
 			  <img src="<?php echo $top['image_url'] ?>" width="300px" alt="">
 			  <div class="caption">
