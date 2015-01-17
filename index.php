@@ -233,7 +233,6 @@
   $app->post('/my-new-top', function () use ($app) {
     $element_id[] = Element::add_element($_POST['title'], $_POST['description'] );
     if($_FILES['image']!=null){
-      var_dump($_FILES);
       Element::upload_image($element_id);}
 
     $vote = Vote::add_vote( $_POST['emplacement'], $_SESSION['id'], $element_id, $_POST['top_id'] );

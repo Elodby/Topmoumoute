@@ -81,8 +81,10 @@ class Element
   static function upload_image($element_id){
       $target_dir = "./uploadedfiles/";
       $i=0;
-      while($_FILES["image"]['name'][$i]!="")
+      while($i<5)
       {
+        if($_FILES["image"]['name'][$i]=="") break;
+        else {
           $target_file = $target_dir . basename($_FILES["image"]["name"][$i]);
           $uploadOk = 1;
           $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
@@ -136,8 +138,9 @@ class Element
 
               $requete->execute();
               //echo "OK BDD"; 
-              }
+            }  
         $i++;
+      }
       }
     }
 }

@@ -13,7 +13,7 @@
         <div class="form-group">
           <h4 class="col-md-4 control-label" for="title">Numero 1</h4>  
           <div class="col-md-4">
-          <input type="hidden" value="1" name="emplacement[]" class="form-control input-md">
+          <input type="hidden" value="1" name="emplacement[]" class="form-control input-md" required="">
           </div>
         </div>
 

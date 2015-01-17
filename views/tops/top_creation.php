@@ -32,7 +32,7 @@
             <?php foreach($this->data['categories'] as $category){
               $category_id = $category['cat_id'];
             ?>
-              <option value= "<?php echo $category_id ?>" > <?php echo $category['cat_title']; ?> </option>;
+              <option value= "<?php echo $category_id ?>" > <?php echo utf8_decode($category['cat_title']); ?> </option>;
             <?php } ?>
            
           </select>

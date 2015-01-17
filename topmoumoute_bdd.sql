@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Sam 17 Janvier 2015 à 10:53
+-- Généré le: Sam 17 Janvier 2015 à 17:30
 -- Version du serveur: 5.6.12-log
 -- Version de PHP: 5.4.12
 
@@ -30,9 +30,9 @@ USE `topmoumoute_bdd`;
 
 CREATE TABLE IF NOT EXISTS `categories` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) NOT NULL,
+  `title` varchar(255) CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
 
 --
 -- Contenu de la table `categories`
@@ -40,7 +40,20 @@ CREATE TABLE IF NOT EXISTS `categories` (
 
 INSERT INTO `categories` (`id`, `title`) VALUES
 (1, 'Humour'),
-(2, 'Film');
+(3, 'Cinema'),
+(4, 'Geek'),
+(5, 'TV'),
+(6, 'Voyage'),
+(7, 'Mode'),
+(8, 'Animaux'),
+(9, 'Cuisine'),
+(10, 'Art'),
+(11, 'Litterature'),
+(12, 'Jeux video'),
+(13, 'Sante'),
+(14, 'Amour'),
+(15, 'Politique'),
+(16, 'Inclassable');
 
 -- --------------------------------------------------------
 
@@ -66,45 +79,69 @@ CREATE TABLE IF NOT EXISTS `elements` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
   `description` varchar(500) NOT NULL,
-  `image_url` varchar(255) NOT NULL,
+  `image_url` varchar(255) NOT NULL DEFAULT 'nothing.gif',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=31 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=114 ;
 
 --
 -- Contenu de la table `elements`
 --
 
 INSERT INTO `elements` (`id`, `title`, `description`, `image_url`) VALUES
-(1, 'element title', 'description title', 'http://www.recipe.com/images/mini-chocolate-chip-muffins-24900025rca-ss.jpg'),
-(2, 'element 2 titre', '', ''),
-(3, 'Fraisier', 'Parce que les fraises c''est trop bon !', ''),
-(4, 'FÃ´ret Noire', 'Du chocolat !', ''),
-(5, 'Eclair au chocolat', 'Simple mais efficace', ''),
-(6, 'Chocolatine', 'Et pas pain au chocolat !', ''),
-(7, 'Meringue', 'Que du sucre.. !', ''),
-(8, 'USA', 'La base, mais on peut (presque) tout y voir', ''),
-(9, 'Canada', 'C''est joli la neige', ''),
-(10, 'Japon', 'Paysages et culture ', ''),
-(11, 'Madagascar', 'Pleins d''animaux qu''on ne trouve nulle part ailleurs !', ''),
-(12, '', '', ''),
-(13, 'tt', 'tt', ''),
-(14, 'yy', 'yy', ''),
-(15, 'a', '', ''),
-(16, 'z', '', ''),
-(17, 'gully1', '', ''),
-(18, 'gully2', '', ''),
-(19, 'gully1', '', ''),
-(20, 'gully2', '', ''),
-(21, 'gully1', '', ''),
-(22, 'gully2', '', 'animaux.jpg'),
-(23, 'image 1', '', ''),
-(24, 'image 2', '', ''),
-(25, 'image 3', '', ''),
-(26, 'image 4', '', ''),
-(27, 'image 1', '', 'cute.jpg'),
-(28, 'image 2', '', 'film.jpg'),
-(29, 'image 3', '', 'appli.png'),
-(30, 'image 4', '', 'pc.jpg');
+(36, 'Uncharted 4', 'La suite des aventures de Drake sur PS4', '511lfSLkJZL.jpg'),
+(37, 'Tom Clancy''s The Division', 'Un MMO post-apocalyptique', 'thedivision.jpg'),
+(38, 'The Order : 1886', 'Un TPS trÃ¨s prometteur', '500px-The_Order_1886.jpg'),
+(39, 'The Witcher 3 : Wild Hunt', 'TroisiÃ¨me Ã©pisode de la sÃ©rie', 'witcher.jpg'),
+(40, 'Final Fantasy XV', 'Nouveau FF dans un monde moderne', 'ff15.png'),
+(41, 'Presque un tableau', '', 'B7HEbvGIIAADzYw.jpg'),
+(42, 'Paris', 'Place de la rÃ©publique', 'B7E8dQIIAAARjM-.jpg'),
+(43, 'Royan', 'Du beach art plage de Royan', 'B7Fr4jKIgAAib4V.jpg'),
+(44, 'Trafalgar Square', 'The National Gallery bleu/blanc/rouge', 'B7FbGCCIIAAt89j.jpg'),
+(45, 'Slogan', 'Un maquillage au top', 'B7FnT2TIYAEFFtB.jpg'),
+(70, 't', '', 'Assassin_sCreed.jpg'),
+(71, 'y', '', '6047979.jpg'),
+(72, 'y', '', '511lfSLkJZL.jpg'),
+(73, 'y', '', '500px-The_Order_1886.jpg'),
+(74, 't', '', 'noel.jpg'),
+(75, 't', '', 'Assassin_sCreed.jpg'),
+(76, 'y', '', '6047979.jpg'),
+(77, 'y', '', '511lfSLkJZL.jpg'),
+(78, 'y', '', '500px-The_Order_1886.jpg'),
+(79, 't', '', 'noel.jpg'),
+(80, 't', '', 'Assassin_sCreed.jpg'),
+(81, 'y', '', '6047979.jpg'),
+(82, 'y', '', '511lfSLkJZL.jpg'),
+(83, 'y', '', '500px-The_Order_1886.jpg'),
+(84, 't', '', 'noel.jpg'),
+(85, 't', '', 'Assassin_sCreed.jpg'),
+(86, 'y', '', '6047979.jpg'),
+(87, 'y', '', '511lfSLkJZL.jpg'),
+(88, 'y', '', '500px-The_Order_1886.jpg'),
+(89, 't', '', 'noel.jpg'),
+(90, 't', '', 'Assassin_sCreed.jpg'),
+(91, 'y', '', '6047979.jpg'),
+(92, 'y', '', '511lfSLkJZL.jpg'),
+(93, 'y', '', '500px-The_Order_1886.jpg'),
+(94, 't', '', 'noel.jpg'),
+(95, 't', '', 'Assassin_sCreed.jpg'),
+(96, 'y', '', '6047979.jpg'),
+(97, 'y', '', '511lfSLkJZL.jpg'),
+(98, 'y', '', '500px-The_Order_1886.jpg'),
+(99, 't', '', 'noel.jpg'),
+(100, 't', '', 'Assassin_sCreed.jpg'),
+(101, 'y', '', '6047979.jpg'),
+(102, 'y', '', '511lfSLkJZL.jpg'),
+(103, 'y', '', '500px-The_Order_1886.jpg'),
+(104, 't', '', 'noel.jpg'),
+(105, 't', '', 'Assassin_sCreed.jpg'),
+(106, 'y', '', '6047979.jpg'),
+(107, 'y', '', '511lfSLkJZL.jpg'),
+(108, 'y', '', '500px-The_Order_1886.jpg'),
+(109, 'Paris', 'La capitale', 'Paris-France-1.jpg'),
+(110, 'Bordeaux', '', 'bordeaux.jpg'),
+(111, 'CÃ´te d''Azur', '', 'provence-cote-azur.jpg'),
+(112, 'Alpes', '', 'bann_rhone-alpes_001.jpg'),
+(113, 'CÃ´te Ouest', '', '7-rivedoux-plage.jpg');
 
 -- --------------------------------------------------------
 
@@ -124,11 +161,7 @@ CREATE TABLE IF NOT EXISTS `followers` (
 
 INSERT INTO `followers` (`user_id`, `follower_id`) VALUES
 (1, 2),
-(1, 9),
-(1, 16),
-(2, 1),
-(2, 9),
-(2, 16);
+(2, 1);
 
 -- --------------------------------------------------------
 
@@ -147,21 +180,13 @@ CREATE TABLE IF NOT EXISTS `likes` (
 --
 
 INSERT INTO `likes` (`top_id`, `user_id`) VALUES
-(1, 1),
-(1, 2),
-(1, 9),
-(1, 16),
-(2, 1),
-(5, 1),
-(6, 1),
-(6, 2),
-(6, 9),
-(6, 16),
-(7, 1),
-(29, 1),
-(30, 1),
-(34, 1),
-(35, 1);
+(39, 1),
+(39, 2),
+(40, 2),
+(42, 2),
+(43, 2),
+(44, 2),
+(45, 2);
 
 -- --------------------------------------------------------
 
@@ -178,46 +203,16 @@ CREATE TABLE IF NOT EXISTS `tops` (
   `user_id` int(11) NOT NULL,
   `source_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=36 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=46 ;
 
 --
 -- Contenu de la table `tops`
 --
 
 INSERT INTO `tops` (`id`, `title`, `description`, `date`, `category_id`, `user_id`, `source_id`) VALUES
-(1, 'top test', '', '2014-12-01', 0, 1, 1),
-(2, 'Top 10 des pays', 'Meilleurs destination de vacance', '0000-00-00', 0, 0, 0),
-(5, 'Les meilleurs gateaux', 'Parce que j''ai faim !', '0000-00-00', 0, 0, 0),
-(6, 'Les meilleures patisseries', 'Un petit creux ?', '2015-01-13', 1, 2, 0),
-(7, 'Les plus beaux voyages', 'OÃ¹ aimeriez-vous aller ?', '2015-01-13', 1, 2, 0),
-(8, 'Test', 'test', '2015-01-17', 1, 1, 0),
-(9, 'Test', 'test', '2015-01-17', 1, 1, 0),
-(10, 'Test', 'test', '2015-01-17', 1, 1, 0),
-(11, 'Test', 'test', '2015-01-17', 1, 1, 0),
-(12, 'Test', 'test', '2015-01-17', 1, 1, 0),
-(13, 'Test', 'test', '2015-01-17', 1, 1, 0),
-(14, 'Test', 'test', '2015-01-17', 1, 1, 0),
-(15, 'Test', 'test', '2015-01-17', 1, 1, 0),
-(16, 'Test', 'test', '2015-01-17', 1, 1, 0),
-(17, 'Test', 'test', '2015-01-17', 1, 1, 0),
-(18, 'Top 5 test', 'test', '2015-01-17', 1, 1, 0),
-(19, 'Top 5 test', 'test', '2015-01-17', 1, 1, 0),
-(20, 'Top 5 test', 'test', '2015-01-17', 1, 1, 0),
-(21, 'Top 5 test', 'test', '2015-01-17', 1, 1, 0),
-(22, 'Top 5 test', 'test', '2015-01-17', 1, 1, 0),
-(23, 'Top 5 test', 'test', '2015-01-17', 1, 1, 0),
-(24, 'Top 5 test', 'test', '2015-01-17', 1, 1, 0),
-(25, 'Top 5 test', 'test', '2015-01-17', 1, 1, 0),
-(26, 'Top 5 test', 'test', '2015-01-17', 1, 1, 0),
-(27, 'Top 5 test', 'test', '2015-01-17', 1, 1, 0),
-(28, 'Top 5 test', 'test', '2015-01-17', 1, 1, 0),
-(29, 'Top 5 test', 'test', '2015-01-17', 1, 1, 0),
-(30, 'Top 5 test', 'test', '2015-01-17', 1, 1, 0),
-(31, 'Test', '', '2015-01-17', 1, 1, 0),
-(32, 'yolo', 'yolo', '2015-01-17', 1, 1, 0),
-(33, 'azert', '', '2015-01-17', 1, 1, 0),
-(34, 'gully', '', '2015-01-17', 1, 1, 0),
-(35, 'Test images', '', '2015-01-17', 1, 1, 0);
+(39, 'Top des jeux les plus attendus de 2015', 'Sur PC & NextGens', '2015-01-17', 12, 1, 0),
+(40, 'Top #jesuischarlie', 'Les plus belles photos de la marche en l''honneur de Charlie Hebdo', '2015-01-17', 16, 2, 0),
+(45, 'Top destinations franÃ§aises', 'Les plus beaux lieux en France', '2015-01-17', 6, 2, 0);
 
 -- --------------------------------------------------------
 
@@ -231,12 +226,12 @@ CREATE TABLE IF NOT EXISTS `users` (
   `first_name` varchar(255) NOT NULL,
   `last_name` varchar(255) NOT NULL,
   `mail` varchar(255) NOT NULL,
-  `avatar_url` varchar(255) NOT NULL DEFAULT 'elsa.png',
+  `avatar_url` varchar(255) NOT NULL DEFAULT 'anonymous.png',
   `follower_nbr` int(11) NOT NULL,
   `password` varchar(50) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `pseudo` (`pseudo`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COMMENT='gestion des utilisateurs' AUTO_INCREMENT=19 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COMMENT='gestion des utilisateurs' AUTO_INCREMENT=22 ;
 
 --
 -- Contenu de la table `users`
@@ -244,10 +239,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 INSERT INTO `users` (`id`, `pseudo`, `first_name`, `last_name`, `mail`, `avatar_url`, `follower_nbr`, `password`) VALUES
 (1, 'Elby', '', '', 'elby@gmail.com', 'animaux.jpg', 100, 'elby'),
-(2, 'sara', '', '', 'sara@brin.fr', '6047979.jpg', 0, 'sara'),
-(8, 'test', '', '', 'test@mail.fr', 'http://upload.wikimedia.org/wikipedia/en/c/cf/YoungSimbaSmilestlk.png', 0, 'test'),
-(9, 'toto', '', '', 'toto', 'http://upload.wikimedia.org/wikipedia/en/c/cf/YoungSimbaSmilestlk.png', 0, 'toto'),
-(16, 'marie', '', '', 'marie@mc.com', 'http://upload.wikimedia.org/wikipedia/en/c/cf/YoungSimbaSmilestlk.png', 0, 'marie  ');
+(2, 'sara', '', '', 'sara@brin.fr', '6047979.jpg', 0, 'sara');
 
 -- --------------------------------------------------------
 
@@ -262,35 +254,28 @@ CREATE TABLE IF NOT EXISTS `votes` (
   `element_id` int(11) NOT NULL,
   `top_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COMMENT='permet de gerer l''emplacement de chaque element dans un top' AUTO_INCREMENT=23 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COMMENT='permet de gerer l''emplacement de chaque element dans un top' AUTO_INCREMENT=52 ;
 
 --
 -- Contenu de la table `votes`
 --
 
 INSERT INTO `votes` (`id`, `emplacement`, `user_id`, `element_id`, `top_id`) VALUES
-(1, 1, 1, 1, 1),
-(2, 2, 1, 2, 1),
-(3, 1, 1, 1, 5),
-(4, 1, 1, 1, 2),
-(5, 1, 2, 3, 6),
-(6, 2, 2, 4, 6),
-(7, 3, 2, 5, 6),
-(8, 4, 2, 6, 6),
-(9, 5, 2, 7, 6),
-(10, 1, 2, 8, 7),
-(11, 2, 2, 9, 7),
-(12, 3, 2, 10, 7),
-(13, 4, 2, 11, 7),
-(14, 5, 2, 12, 7),
-(15, 1, 1, 13, 31),
-(16, 2, 1, 14, 31),
-(17, 1, 1, 21, 34),
-(18, 2, 1, 22, 34),
-(19, 1, 1, 27, 35),
-(20, 2, 1, 28, 35),
-(21, 3, 1, 29, 35),
-(22, 4, 1, 30, 35);
+(23, 1, 1, 36, 39),
+(24, 2, 1, 37, 39),
+(25, 3, 1, 38, 39),
+(26, 4, 1, 39, 39),
+(27, 5, 1, 40, 39),
+(28, 1, 2, 41, 40),
+(29, 2, 2, 42, 40),
+(30, 3, 2, 43, 40),
+(31, 4, 2, 44, 40),
+(32, 5, 2, 45, 40),
+(47, 1, 2, 109, 45),
+(48, 2, 2, 110, 45),
+(49, 3, 2, 111, 45),
+(50, 4, 2, 112, 45),
+(51, 5, 2, 113, 45);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

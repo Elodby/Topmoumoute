@@ -6,10 +6,10 @@
 	</div>
   	<div class="row">
 		<?php foreach ($this->data['tops'] as $top): ?>
-		  <div class="col-md-3" >
+		  <div class="col-md-4" >
 		   <a href='<?php echo "../tops-".$top['id']?>'>
 			<div class="thumbnail">
-			  <img src="<?php echo $top['image_url'] ?>" width="300px" alt="">
+			  <img src="<?php echo '../uploadedfiles/'.$top['image_url'] ;?>" width="300px" alt="">
 			  <div class="caption">
 				<h3><?php echo $top['title'] ?></h3>
 				<p><?php echo $top['description'] ?></p>
