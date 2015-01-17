@@ -263,5 +263,17 @@
     );
   })->name('post_search');
 
+  //IMAGES CARREES
+  $app->get('/image/:path', function ($path) {
+      
+    // TODO lancer la fonction de redimensionnement de l'image
+    
+    // TODO rÃ©cupÃ©rer le bon format d'image (png, jpeg ou gif) cf: http://fr.wikipedia.org/wiki/Type_MIME
+    $formatImage = 'jpeg';
+    
+    // application du bon content type
+    $app->response->headers['Content-Type'] = 'image/' . $formatImage;
+  });
+
   // always need to be at the bottom of this file !
   $app->run();

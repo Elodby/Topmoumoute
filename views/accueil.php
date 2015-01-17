@@ -23,43 +23,6 @@
 			</a>
 		  </div>
 			<?php endforeach; ?>
-			  <!-- <div class="col-md-3">
-				<div class="thumbnail">
-				  <img src="pictures/noel.jpg" width="300px" alt="">
-				  <div class="caption">
-					<h3>Votre top idées cadeaux :</h3>
-					<p>Des bonnes idées ? Partagez !</p>
-					<p><a href="#" class="btn btn-info" role="button">Toper !</a></p>
-				  </div>
-				</div>
-			  </div>
-
-			   <div class="col-md-3">
-				<div class="thumbnail">
-				  <img src="pictures/plage.jpg" width="300px" alt="">
-				  <div class="caption">
-					<h3>Vos lieux préférés :</h3>
-					<p>Les endroits qui vous font rêver.</p>
-					<p><a href="#" class="btn btn-info" role="button">Toper !</a></p>
-				  </div>
-				</div>
-			  </div>
-
-			   <div class="col-md-3">
-				<div class="thumbnail">
-				  <img src="pictures/film.jpg" width="300px" alt="">
-				  <div class="caption">
-					<h3>Vos films favoris :</h3>
-					<p>Incontournable.</p>
-				  </br>
-					<p><a href="#" class="btn btn-info" role="button">Toper !</a></p>
-				  </div>
-				</div>
-			  </div>
-
-			</div>
-		  </div>
-		</div>-->
 
 		<div class="row">
 		  <div class="col-md-12">
