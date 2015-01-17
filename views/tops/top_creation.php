@@ -9,7 +9,7 @@
     <div class="form-group">
       <label class="col-md-4 control-label" for="title">Titre du top</label>  
       <div class="col-md-4">
-        <input id="title" name="title" type="text" placeholder="Titre" class="form-control input-md">
+        <input id="title" name="title" type="text" placeholder="Top 5 ..." class="form-control input-md" required="">
       </div>
     </div>
 

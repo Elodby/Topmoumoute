@@ -57,8 +57,8 @@ class Vote
             $vote_id[]=$bdd->lastInsertId();
         }
 
-    
-        return $vote_id;
+        if(isset($vote_id))
+            return $vote_id;
     }
 
 

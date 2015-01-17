@@ -13,7 +13,7 @@
 		  <div class="col-md-3" >
 		   <a href='<?php echo "tops-".$top['id']?>'>
 			<div class="thumbnail">
-			  <img src="<?php echo $top['image_url'];//square_image('./uploadedfiles/elsa.png'); //square_image($top['image_url']); ?>" width="300px" alt="">
+			  <img src="<?php echo './uploadedfiles/'.$top['image_url'];?>" width="300px" alt="">
 			  <div class="caption">
 				<h3><?php echo $top['title'] ?></h3>
 				<p><?php echo $top['description'] ?></p>
@@ -71,7 +71,7 @@
 		  <div class="col-md-3">
 		   <a href='<?php echo "tops-".$top['id']?>'>
 			<div class="thumbnail">
-			  <img src="<?php echo $top['image_url'] ?>" width="300px" alt="">
+			  <img src="<?php echo './uploadedfiles/'.$top['image_url'];?>" width="300px" alt="">
 			  <div class="caption">
 				<h3><?php echo $top['title'] ?></h3>
 				<p><?php echo $top['description'] ?></p>
@@ -94,7 +94,7 @@
 			  <div class="col-md-3">
 			   <a href='<?php echo "tops-".$top['id']?>'>
 				<div class="thumbnail">
-				  <img src="<?php echo $top['image_url'] ?>" width="300px" alt="">
+				  <img src="<?php echo './uploadedfiles/'.$top['image_url'];?>" width="300px" alt="">
 				  <div class="caption">
 					<h3><?php echo $top['title'] ?></h3>
 					<p><?php echo $top['description'] ?></p>
