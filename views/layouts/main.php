@@ -74,6 +74,8 @@
             echo $yield 
           ?>
         </div>
+        <div class="col-md-3 col-md-pull-9">
+          <img width="200px" src="<?php echo $app->urlFor('root')?>/LOGO.png" alt="logo" class="img-rounded">
         </div>
         </div>
         </div>

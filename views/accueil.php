@@ -72,10 +72,7 @@
 			  </div>
 			</div>
 		<?php } ?>
-		
-	  </div>
-	  <div class="col-md-3 col-md-pull-9">
-		<img width="250px" src="pictures/logo_mouton.png" alt="#" class="img-rounded">
+		</div>
 	  </div>
 	</div>
   </div>
