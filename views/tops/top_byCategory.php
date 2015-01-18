@@ -20,7 +20,7 @@
 	<div class="row">
 		<?php foreach ($this->data['tops'] as $top): ?>
 		  <div class="col-md-4" >
-		   <a href='<?php echo "tops-".$top['id']?>'>
+		   <a href='<?php echo "../tops-".$top['id']?>'>
 			<div class="thumbnail">
 			  <img src="<?php echo '../uploadedfiles/'.$top['image_url'] ?>" width="300px" alt="">
 			  <div class="caption">

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Sam 17 Janvier 2015 à 17:30
+-- Généré le: Dim 18 Janvier 2015 à 21:34
 -- Version du serveur: 5.6.12-log
 -- Version de PHP: 5.4.12
 
@@ -81,7 +81,7 @@ CREATE TABLE IF NOT EXISTS `elements` (
   `description` varchar(500) NOT NULL,
   `image_url` varchar(255) NOT NULL DEFAULT 'nothing.gif',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=114 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=119 ;
 
 --
 -- Contenu de la table `elements`
@@ -141,7 +141,12 @@ INSERT INTO `elements` (`id`, `title`, `description`, `image_url`) VALUES
 (110, 'Bordeaux', '', 'bordeaux.jpg'),
 (111, 'CÃ´te d''Azur', '', 'provence-cote-azur.jpg'),
 (112, 'Alpes', '', 'bann_rhone-alpes_001.jpg'),
-(113, 'CÃ´te Ouest', '', '7-rivedoux-plage.jpg');
+(113, 'CÃ´te Ouest', '', '7-rivedoux-plage.jpg'),
+(114, 'Get Backers', 'Auteur : Aoki Yuya, Ayamine Rando', 'ob_3338ab_get-backers-affiche.jpg'),
+(115, 'Dreamland', 'Auteur : Lemaire Reno', '2.jpg'),
+(116, 'Reborn', 'Auteur : Amano Akira', 'hqdefault.jpg'),
+(117, 'Air gear', 'Auteur : ÅŒgure Ito', 'air_gear--ikki.png'),
+(118, 'Death note', 'Auteur : Ã”ba Tsugumi, Obata Takeshi', 'deathnote-illust-1319208611.jpg');
 
 -- --------------------------------------------------------
 
@@ -161,7 +166,9 @@ CREATE TABLE IF NOT EXISTS `followers` (
 
 INSERT INTO `followers` (`user_id`, `follower_id`) VALUES
 (1, 2),
-(2, 1);
+(1, 22),
+(2, 1),
+(22, 1);
 
 -- --------------------------------------------------------
 
@@ -182,11 +189,16 @@ CREATE TABLE IF NOT EXISTS `likes` (
 INSERT INTO `likes` (`top_id`, `user_id`) VALUES
 (39, 1),
 (39, 2),
+(39, 22),
+(40, 1),
 (40, 2),
 (42, 2),
 (43, 2),
 (44, 2),
-(45, 2);
+(45, 1),
+(45, 2),
+(46, 1),
+(46, 22);
 
 -- --------------------------------------------------------
 
@@ -203,7 +215,7 @@ CREATE TABLE IF NOT EXISTS `tops` (
   `user_id` int(11) NOT NULL,
   `source_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=46 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=47 ;
 
 --
 -- Contenu de la table `tops`
@@ -211,8 +223,9 @@ CREATE TABLE IF NOT EXISTS `tops` (
 
 INSERT INTO `tops` (`id`, `title`, `description`, `date`, `category_id`, `user_id`, `source_id`) VALUES
 (39, 'Top des jeux les plus attendus de 2015', 'Sur PC & NextGens', '2015-01-17', 12, 1, 0),
-(40, 'Top #jesuischarlie', 'Les plus belles photos de la marche en l''honneur de Charlie Hebdo', '2015-01-17', 16, 2, 0),
-(45, 'Top destinations franÃ§aises', 'Les plus beaux lieux en France', '2015-01-17', 6, 2, 0);
+(40, 'Top photos #jesuischarlie', 'Les plus belles photos de la marche en l''honneur de Charlie Hebdo', '2015-01-17', 16, 2, 0),
+(45, 'Top destinations franÃ§aises', 'Les plus beaux lieux en France', '2015-01-17', 6, 2, 0),
+(46, 'Top mangas', 'Les meilleurs mangas que j''ai lus', '2015-01-18', 11, 22, 0);
 
 -- --------------------------------------------------------
 
@@ -231,7 +244,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `password` varchar(50) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `pseudo` (`pseudo`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COMMENT='gestion des utilisateurs' AUTO_INCREMENT=22 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COMMENT='gestion des utilisateurs' AUTO_INCREMENT=24 ;
 
 --
 -- Contenu de la table `users`
@@ -239,7 +252,9 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 INSERT INTO `users` (`id`, `pseudo`, `first_name`, `last_name`, `mail`, `avatar_url`, `follower_nbr`, `password`) VALUES
 (1, 'Elby', '', '', 'elby@gmail.com', 'animaux.jpg', 100, 'elby'),
-(2, 'sara', '', '', 'sara@brin.fr', '6047979.jpg', 0, 'sara');
+(2, 'sara', '', '', 'sara@brin.fr', '6047979.jpg', 0, 'sara'),
+(22, 'jean', '', '', 'jean.pallier@y-nov.com', 'anonymous.png', 0, 'jean'),
+(23, 'marie', '', '', 'marie@mail.com', 'anonymous.png', 0, 'marie');
 
 -- --------------------------------------------------------
 
@@ -254,7 +269,7 @@ CREATE TABLE IF NOT EXISTS `votes` (
   `element_id` int(11) NOT NULL,
   `top_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COMMENT='permet de gerer l''emplacement de chaque element dans un top' AUTO_INCREMENT=52 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COMMENT='permet de gerer l''emplacement de chaque element dans un top' AUTO_INCREMENT=57 ;
 
 --
 -- Contenu de la table `votes`
@@ -275,7 +290,12 @@ INSERT INTO `votes` (`id`, `emplacement`, `user_id`, `element_id`, `top_id`) VAL
 (48, 2, 2, 110, 45),
 (49, 3, 2, 111, 45),
 (50, 4, 2, 112, 45),
-(51, 5, 2, 113, 45);
+(51, 5, 2, 113, 45),
+(52, 1, 22, 114, 46),
+(53, 2, 22, 115, 46),
+(54, 3, 22, 116, 46),
+(55, 4, 22, 117, 46),
+(56, 5, 22, 118, 46);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

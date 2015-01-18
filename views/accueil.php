@@ -1,4 +1,4 @@
-<p class="lead bg-info text-center" style="padding:2px; color:#333; border-radius:2px;"><small>Le site de partage de classements,<br> exprime tes préférences sur toutes sortes de sujet en créant des tops 5 !</small></p>
+<p class="lead bg-info text-center" style="padding:2px; color:#333; border-radius:2px;"><small>Le site de partage de classements,<br> exprime tes préférences sur toutes sortes de sujets en créant des tops 5 !</small></p>
 <div class="row">
 	<div class="col-md-12">
 			<div class="row">
